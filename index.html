@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b35">
+<title>مترجم زبان‌های رمزی</title>
+
+<style>
+:root {
+  --bg:#0b1224;
+  --surface:#111c34;
+  --panel:#172540;
+  --panel2:#1b2b49;
+  --blue:#438cff;
+  --blue2:#2867d9;
+  --cyan:#52d6ed;
+  --text:#edf4ff;
+  --muted:#9cafd0;
+  --border:#2c4164;
+  --shadow:0 10px 30px #00000020;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;padding:12px;
+  background:radial-gradient(ellipse at top right,#183663 0,transparent 45%),var(--bg);
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+  font-size:13px;
+}
+button,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:600px;margin:auto}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin-bottom:12px
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{
+  width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;
+  border-radius:14px;background:linear-gradient(145deg,#55b8ff,#3568ff);
+  box-shadow:0 5px 18px #367cff40;font-size:24px;font-weight:bold;color:white
+}
+h1{font-size:16px;margin:0 0 5px}
+.subtitle{font-size:10px;color:var(--muted)}
+.about-button{
+  min-width:94px;min-height:40px;padding:7px 10px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  border:1px solid #42618d;border-radius:11px;
+  background:linear-gradient(145deg,#1d3153,#14233d);
+  color:#dbeaff;font-size:11px;white-space:nowrap;
+  box-shadow:0 4px 12px #00000018
+}
+.info-icon{
+  width:19px;height:19px;display:grid;place-items:center;
+  border-radius:6px;background:#2b568d;color:white;font-weight:bold
+}
+.about-panel{
+  display:none;padding:12px 14px;margin-bottom:11px;
+  border:1px solid var(--border);border-radius:12px;
+  background:var(--surface);line-height:2.1;
+  overflow-wrap:anywhere;color:#dce9ff
+}
+.about-panel.open{display:block}
+.about-panel strong{color:var(--cyan)}
+.card{
+  padding:12px;background:linear-gradient(155deg,#14213b,#101a30);
+  border:1px solid var(--border);border-radius:17px;box-shadow:var(--shadow)
+}
+.options{
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px
+}
+.field{
+  min-width:0;padding:9px;background:var(--panel);
+  border:1px solid #2a4063;border-radius:12px
+}
+.field label{
+  display:flex;align-items:center;gap:5px;
+  margin-bottom:7px;font-size:11px;color:#b7cbed
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+/* منوی انتخاب سفارشی */
+.custom-select{position:relative;width:100%}
+.select-trigger{
+  width:100%;min-height:38px;padding:7px 9px;
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  border:1px solid #344e77;border-radius:9px;
+  background:#0f1b31;color:var(--text);text-align:right;
+  font-size:12px
+}
+.select-trigger:hover,.select-trigger[aria-expanded="true"]{
+  border-color:var(--blue);background:#142747
+}
+.arrow{
+  color:#8bc9ff;font-size:12px;transition:transform .15s
+}
+.select-trigger[aria-expanded="true"] .arrow{transform:rotate(180deg)}
+.select-menu{
+  display:none;position:absolute;z-index:50;top:calc(100% + 5px);
+  right:0;left:0;padding:5px;
+  border:1px solid #385985;border-radius:11px;
+  background:#111c34;
+  box-shadow:0 12px 30px #0008;
+  max-height:220px;overflow-y:auto
+}
+.select-menu.open{display:block}
+.select-option{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;width:100%;padding:10px;
+  border:1px solid transparent;border-radius:7px;
+  background:transparent;color:#dce9ff;text-align:right;font-size:12px
+}
+.select-option:hover,.select-option:focus-visible{
+  outline:none;background:#1b3152;border-color:#345783
+}
+.select-option.selected{
+  background:#1b3761;border-color:#3568a9;color:#ffffff
+}
+.checkmark{color:var(--cyan);visibility:hidden}
+.select-option.selected .checkmark{visibility:visible}
+.editor{
+  margin-top:10px;padding:10px;
+  border:1px solid #2a4166;border-radius:13px;
+  background:linear-gradient(145deg,#182844,#132039)
+}
+.editor-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:7px;margin-bottom:8px
+}
+.editor-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:bold}
+.editor-icon{
+  width:26px;height:26px;display:grid;place-items:center;
+  border-radius:8px;background:#233e67;color:#8fc9ff;font-size:14px
+}
+.tag{
+  padding:4px 8px;border:1px solid #355783;border-radius:7px;
+  background:#1c3456;color:#9dccff;font-size:10px
+}
+textarea{
+  display:block;width:100%;height:100px;min-height:75px;resize:vertical;
+  padding:10px;border:1px solid #304665;border-radius:10px;
+  background:#0c1629;color:#f0f6ff;outline:none;
+  font-size:13px;line-height:1.9
+}
+textarea::placeholder{color:#7185a6}
+textarea:focus{border-color:var(--blue)}
+#result{background:#101f38;border-color:#31527d}
+.actions{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr 43px;
+  gap:7px;margin-top:12px
+}
+.btn{
+  min-width:0;height:40px;display:flex;align-items:center;
+  justify-content:center;gap:5px;padding:0 8px;
+  border:1px solid #344d72;border-radius:10px;
+  background:linear-gradient(150deg,#213452,#172641);
+  color:#dceaff;font-size:11px;white-space:nowrap;
+  transition:transform .15s,border-color .15s
+}
+.btn:active,.about-button:active{transform:scale(.97)}
+.btn:hover{border-color:#5685c6}
+.btn.primary{
+  border-color:#438cff;
+  background:linear-gradient(135deg,#469eff,#3267ee);
+  color:white;font-weight:bold;box-shadow:0 4px 12px #2867d933
+}
+.btn.square{padding:0;font-size:19px;color:#80c9ff}
+.status{min-height:20px;padding-top:8px;font-size:11px;color:var(--cyan)}
+.info{
+  margin-top:4px;padding:10px;border:1px solid #263b5c;
+  border-radius:10px;background:#101b30;color:#a8bddc;
+  font-size:10px;line-height:1.9
+}
+footer{text-align:center;padding:12px 0 3px;color:#7185a6;font-size:10px}
+@media(max-width:360px){
+  body{padding:7px}.card{padding:8px}
+  h1{font-size:14px}.subtitle{font-size:9px}
+  .about-button{min-width:86px;padding:6px;font-size:10px}
+  .options{gap:6px}.field{padding:7px}
+  .actions{grid-template-columns:1.15fr 1fr 1fr 36px;gap:4px}
+  .btn{padding:0 4px;font-size:10px}
+  textarea{height:90px;padding:8px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">ر</div>
+      <div>
+        <h1>مترجم زبان‌های رمزی</h1>
+        <div class="subtitle">ترجمه سریع با قواعد زبان‌های رمزی</div>
+      </div>
+    </div>
+    <button class="about-button" id="aboutBtn" type="button" aria-expanded="false">
+      <span class="info-icon">i</span><span>درباره من</span>
+    </button>
+  </header>
+
+  <section class="about-panel" id="aboutPanel">
+    <strong>درباره من</strong><br>
+    Developer: Masoud delavar<br>
+    Email: masoud0098d@gmail.com
+  </section>
+
+  <main class="card">
+    <div class="options">
+      <div class="field">
+        <label><span class="dot"></span> زبان رمزی</label>
+        <div class="custom-select" id="languageSelect">
+          <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="selected-label">مطربی</span><span class="arrow">▼</span>
+          </button>
+          <div class="select-menu" role="listbox" aria-label="انتخاب زبان رمزی">
+            <button class="select-option selected" type="button" role="option" aria-selected="true" data-value="motarbi">مطربی <span class="checkmark">✓</span></button>
+            <button class="select-option" type="button" role="option" aria-selected="false" data-value="soski">سوسکی <span class="checkmark">✓</span></button>
+            <button class="select-option" type="button" role="option" aria-selected="false" data-value="sidi">سیدی <span class="checkmark">✓</span></button>
+            <button class="select-option" type="button" role="option" aria-selected="false" data-value="zargari">زرگری <span class="checkmark">✓</span></button>
+            <button class="select-option" type="button" role="option" aria-selected="false" data-value="lami">لامی (آزمایشی) <span class="checkmark">✓</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label><span class="dot"></span> جهت ترجمه</label>
+        <div class="custom-select" id="directionSelect">
+          <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="selected-label">فارسی به رمزی</span><span class="arrow">▼</span>
+          </button>
+          <div class="select-menu" role="listbox" aria-label="انتخاب جهت ترجمه">
+            <button class="select-option selected" type="button" role="option" aria-selected="true" data-value="encode">فارسی به رمزی <span class="checkmark">✓</span></button>
+            <button class="select-option" type="button" role="option" aria-selected="false" data-value="decode">رمزی به فارسی <span class="checkmark">✓</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="editor">
+      <div class="editor-head">
+        <div class="editor-title"><span class="editor-icon">✎</span><span id="sourceTitle">متن فارسی</span></div>
+        <span class="tag">ورودی</span>
+      </div>
+      <textarea id="source" placeholder="متنت رو اینجا بنویس..." spellcheck="false"></textarea>
+    </section>
+
+    <section class="editor">
+      <div class="editor-head">
+        <div class="editor-title"><span class="editor-icon">✧</span><span id="resultTitle">نتیجه ترجمه</span></div>
+        <span class="tag">خروجی</span>
+      </div>
+      <textarea id="result" placeholder="نتیجه اینجا نمایش داده می‌شه..." readonly spellcheck="false"></textarea>
+    </section>
+
+    <div class="actions">
+      <button class="btn primary" id="translateBtn" type="button">⇄ ترجمه</button>
+      <button class="btn" id="copyBtn" type="button">▣ کپی</button>
+      <button class="btn" id="clearBtn" type="button">⌫ پاک‌کردن</button>
+      <button class="btn square" id="swapBtn" type="button" title="جابه‌جایی جهت" aria-label="جابه‌جایی جهت">⇆</button>
+    </div>
+
+    <div class="status" id="status" aria-live="polite"></div>
+    <div class="info" id="ruleInfo"></div>
+  </main>
+  <footer>مترجم زبان‌های رمزی فارسی</footer>
+</div>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+let currentLanguage = "motarbi";
+let currentDirection = "encode";
+
+const source = $("source");
+const result = $("result");
+const status = $("status");
+const ruleInfo = $("ruleInfo");
+
+const initialVowels = new Set(["ا","آ","أ","إ","و","ؤ","ی","ئ","ع"]);
+
+function motarbiEncode(word) {
+  if (!word) return word;
+  const first = word[0], rest = word.slice(1);
+  if (initialVowels.has(first)) return "ش" + rest + "لی";
+  return "ا" + rest + first + "ا";
+}
+const motarbiMap = {
+  "ششقلی":"عشق","شحمدلی":"احمد","شحتراملی":"احترام",
+  "ایکشا":"شیک","ایانشا":"شایان","اسعودما":"مسعود"
+};
+function motarbiDecode(word) { return motarbiMap[word] || word; }
+
+function soskiEncode(word) {
+  return word ? word[0] + "سک" + word.slice(1) : word;
+}
+function soskiDecode(word) {
+  return word.replace(/^([\u0600-\u06FF])سک/, "$1");
+}
+
+function sidiEncode(word) {
+  if (!word) return word;
+  const first = word[0], rest = word.slice(1);
+  if (["س","ث","ص"].includes(first)) return "ب" + rest + "سیدی";
+  return "س" + rest + first + "یدی";
+}
+const sidiMap = {
+  "ستابکیدی":"کتاب","ساران‌بیدی":"باران","بعیدسیدی":"سعید"
+};
+function sidiDecode(word) { return sidiMap[word] || word; }
+
+const zargariMap = {
+  "سلام":"سَزَلازام","من":"مَزَن","تو":"توزو","چطوری":"چِزِطوزوریزی"
+};
+const zargariReverse = Object.fromEntries(
+  Object.entries(zargariMap).map(([key,value]) => [value,key])
+);
+function zargariEncode(word) { return zargariMap[word] || word; }
+function zargariDecode(word) { return zargariReverse[word] || word; }
+
+function lamiEncode(word) {
+  let output = "";
+  for (const char of word) {
+    output += char;
+    if ("اآوی".includes(char)) output += "ل" + char;
+  }
+  return output;
+}
+function lamiDecode(word) {
+  return word.replace(/([اآوی])ل\1/g, "$1");
+}
+
+const rules = {
+  motarbi:{
+    encode:motarbiEncode,decode:motarbiDecode,
+    info:"مطربی: اگر کلمه با حرف صدادار یا «ع» شروع شود، «ش» به ابتدا و «لی» به انتها می‌آید؛ در غیر این صورت حرف اول به انتها منتقل می‌شود."
+  },
+  soski:{
+    encode:soskiEncode,decode:soskiDecode,
+    info:"سوسکی: بعد از حرف اول هر کلمه، «سک» قرار می‌گیرد."
+  },
+  sidi:{
+    encode:sidiEncode,decode:sidiDecode,
+    info:"سیدی: حرف اول تغییر می‌کند و پسوند «یدی» یا «سیدی» اضافه می‌شود. رمزگشایی فعلاً برای نمونه‌های ثبت‌شده دقیق است."
+  },
+  zargari:{
+    encode:zargariEncode,decode:zargariDecode,
+    info:"زرگری: فعلاً نمونه‌های سلام، من، تو و چطوری ثبت شده‌اند؛ کلمات دیگر بدون تغییر می‌مانند."
+  },
+  lami:{
+    encode:lamiEncode,decode:lamiDecode,
+    info:"لامی آزمایشی است و بعد از حروف «ا، آ، و، ی»، الگوی «ل» و تکرار همان حرف را اضافه می‌کند."
+  }
+};
+
+function transformText(text, fn) {
+  return text.replace(/[\u0600-\u06FF]+/g, word => fn(word));
+}
+
+function translate() {
+  if (!source.value.trim()) {
+    result.value = "";
+    status.textContent = "اول متن رو وارد کن.";
+    return;
+  }
+  const selected = rules[currentLanguage];
+  const fn = currentDirection === "encode" ? selected.encode : selected.decode;
+  result.value = transformText(source.value, fn);
+  status.textContent = "ترجمه انجام شد.";
+}
+
+function updateLabels() {
+  $("sourceTitle").textContent = currentDirection === "decode" ? "متن رمزی" : "متن فارسی";
+  $("resultTitle").textContent = currentDirection === "decode" ? "متن فارسی" : "نتیجه ترجمه";
+  ruleInfo.textContent = rules[currentLanguage].info;
+}
+
+function setupCustomSelect(id, initialValue, onChange) {
+  const root = $(id);
+  const trigger = root.querySelector(".select-trigger");
+  const label = root.querySelector(".selected-label");
+  const menu = root.querySelector(".select-menu");
+  const options = [...root.querySelectorAll(".select-option")];
+  let value = initialValue;
+
+  function close() {
+    menu.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+  }
+
+  function choose(option) {
+    value = option.dataset.value;
+    label.textContent = option.childNodes[0].textContent.trim();
+
+    options.forEach(item => {
+      const selected = item === option;
+      item.classList.toggle("selected", selected);
+      item.setAttribute("aria-selected", String(selected));
+    });
+
+    close();
+    onChange(value);
+  }
+
+  trigger.addEventListener("click", () => {
+    const opening = !menu.classList.contains("open");
+    document.querySelectorAll(".select-menu.open").forEach(other => {
+      other.classList.remove("open");
+      const otherTrigger = other.parentElement.querySelector(".select-trigger");
+      if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+    });
+    menu.classList.toggle("open", opening);
+    trigger.setAttribute("aria-expanded", String(opening));
+  });
+
+  options.forEach(option => {
+    option.addEventListener("click", () => choose(option));
+  });
+
+  trigger.addEventListener("keydown", event => {
+    if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      menu.classList.add("open");
+      trigger.setAttribute("aria-expanded", "true");
+      const selected = options.find(option => option.dataset.value === value);
+      (selected || options[0]).focus();
+    }
+  });
+
+  menu.addEventListener("keydown", event => {
+    const index = options.indexOf(document.activeElement);
+    if (event.key === "Escape") {
+      close();
+      trigger.focus();
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      options[(index + 1) % options.length].focus();
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      options[(index - 1 + options.length) % options.length].focus();
+    } else if (event.key === "Tab") {
+      close();
+    }
+  });
+
+  document.addEventListener("click", event => {
+    if (!root.contains(event.target)) close();
+  });
+}
+
+setupCustomSelect("languageSelect", "motarbi", value => {
+  currentLanguage = value;
+  updateLabels();
+  if (source.value.trim()) translate();
+});
+
+setupCustomSelect("directionSelect", "encode", value => {
+  currentDirection = value;
+  updateLabels();
+  if (source.value.trim()) translate();
+});
+
+$("translateBtn").addEventListener("click", translate);
+
+$("copyBtn").addEventListener("click", async () => {
+  if (!result.value) {
+    status.textContent = "اول متن رو ترجمه کن.";
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(result.value);
+    status.textContent = "نتیجه کپی شد.";
+  } catch {
+    result.focus();
+    result.select();
+    const ok = document.execCommand("copy");
+    status.textContent = ok ? "نتیجه کپی شد." : "نتیجه رو انتخاب کن و کپی بگیر.";
+  }
+});
+
+$("clearBtn").addEventListener("click", () => {
+  source.value = "";
+  result.value = "";
+  status.textContent = "";
+  source.focus();
+});
+
+$("swapBtn").addEventListener("click", () => {
+  currentDirection = currentDirection === "encode" ? "decode" : "encode";
+  const oldSource = source.value;
+  source.value = result.value;
+  result.value = oldSource;
+
+  const directionOptions = $("directionSelect").querySelectorAll(".select-option");
+  directionOptions.forEach(option => {
+    const selected = option.dataset.value === currentDirection;
+    option.classList.toggle("selected", selected);
+    option.setAttribute("aria-selected", String(selected));
+    if (selected) {
+      $("directionSelect").querySelector(".selected-label").textContent =
+        option.childNodes[0].textContent.trim();
+    }
+  });
+
+  updateLabels();
+  status.textContent = "جهت ترجمه عوض شد.";
+});
+
+source.addEventListener("input", () => {
+  if (!source.value.trim()) {
+    result.value = "";
+    status.textContent = "";
+  }
+});
+
+$("aboutBtn").addEventListener("click", () => {
+  const panel = $("aboutPanel");
+  const open = panel.classList.toggle("open");
+  $("aboutBtn").setAttribute("aria-expanded", String(open));
+});
+
+source.addEventListener("keydown", event => {
+  if ((event.ctrlKey || event.metaKey) && event.key === "Enter") translate();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".select-menu.open").forEach(menu => {
+      menu.classList.remove("open");
+      menu.parentElement.querySelector(".select-trigger")
+        .setAttribute("aria-expanded", "false");
+    });
+  }
+});
+
+updateLabels();
+</script>
+</body>
+</html>
+
