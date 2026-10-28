@@ -308,10 +308,16 @@ for (const [id, suffix, prefix] of [
     }
 }
 
-/* مطربی:
-   مصوت یا ع در ابتدای واژه: جایگزینی حرف اول با «ش» و افزودن «لی».
-   صامت در ابتدای واژه: جابه‌جایی حرف اول به انتها و ساخت صورت رمزی.
+/* قانون مطربی:
+   ۱. اگر واژه با مصوت یا «ع» شروع شود، حرف اول با «ش» جایگزین
+      و «لی» به انتهای واژه اضافه می‌شود.
+   ۲. اگر واژه با صامت شروع شود، حرف اول به انتها منتقل می‌شود
+      و «ا» به ابتدای واژه و انتهای آن اضافه می‌شود.
+   ۳. برای جلوگیری از «اا» در نمونه‌هایی مثل شایان، اگر بخش
+      جابه‌جاشده با «ا» شروع شود، آن را به «آ» تبدیل می‌کنیم.
+   ۴. اگر بخش جابه‌جاشده با «ی» شروع شود، «ا» به ابتدای آن می‌آید.
 */
+
 const PersianVowels = new Set(["ا","آ","أ","إ","ٱ","و","ؤ","ی","ي","ئ"]);
 
 function encodeMotWord(word) {
@@ -320,18 +326,24 @@ function encodeMotWord(word) {
     const chars = Array.from(word);
     const first = chars[0];
 
-    if (PersianVowels.has(first)) {
+    // قانون کلمات آغازشونده با مصوت یا ع
+    if (PersianVowels.has(first) || first === "ع") {
         return "ش" + chars.slice(1).join("") + "لی";
     }
 
+    // انتقال حرف اول به انتهای کلمه
     let rotated = chars.slice(1).join("") + first;
 
-    if (rotated.startsWith("ی")) {
-        rotated = "ا" + rotated;
-    } else if (rotated.startsWith("ا")) {
+    // افزودن الف به ابتدا، با رعایت شکل نمونه‌های قبلی
+    if (rotated.startsWith("ا")) {
         rotated = "آ" + rotated.slice(1);
+    } else if (rotated.startsWith("ی")) {
+        rotated = "ا" + rotated;
+    } else {
+        rotated = "ا" + rotated;
     }
 
+    // افزودن الف به انتهای کلمه
     return rotated + "ا";
 }
 
@@ -355,8 +367,6 @@ function decodeMotWord(word) {
 
         if (core.startsWith("ا") && core.length > 1) {
             core = core.slice(1);
-        } else if (!core.startsWith("ا") && core.startsWith("ی")) {
-            core = core.slice(1);
         }
 
         if (core.length > 1) {
@@ -376,10 +386,7 @@ function decodeMot(text) {
     ).join("");
 }
 
-/* زرگری:
-   برای نمونه‌های مشخص‌شده، خروجی دقیقاً مطابق مثال‌هاست.
-   در واژه‌های دیگر، مصوت‌های آشکار و حرکت‌گذاری‌شده بررسی می‌شوند.
-*/
+/* زرگری */
 const shortVowels = new Set(["َ", "ِ", "ُ"]);
 const longVowels = new Set(["ا", "آ", "و", "ی", "ي"]);
 
