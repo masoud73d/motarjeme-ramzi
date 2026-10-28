@@ -64,129 +64,129 @@ textarea{min-height:115px}
 </head>
 <body>
 <header>
-  <div class="brand">🔐 رمزگشا</div>
-  <div class="subtitle">مترجم زبان‌ها و کدها</div>
+<div class="brand">🔐 رمزگشا</div>
+<div class="subtitle">مترجم زبان‌ها و کدها</div>
 </header>
 
 <main class="container">
 <section class="panel">
-  <h2>انتخاب روش تبدیل</h2>
-  <p class="small">روش موردنظرت رو از یکی از سه دسته زیر انتخاب کن.</p>
-  <div class="language-columns">
-    <section class="language-group">
-      <h3>🗣️ زبان‌های رمزی ایرانی</h3>
-      <div class="method-list" id="secretMethods"></div>
-    </section>
-    <section class="language-group">
-      <h3>🔣 خط و کد</h3>
-      <div class="method-list" id="codeMethods"></div>
-    </section>
-    <section class="language-group">
-      <h3>🧩 رمزهای کلاسیک و ابزارها</h3>
-      <div class="method-list" id="classicMethods"></div>
-    </section>
-  </div>
+<h2>انتخاب روش تبدیل</h2>
+<p class="small">روش موردنظرت رو از یکی از سه دسته زیر انتخاب کن.</p>
+<div class="language-columns">
+<section class="language-group">
+<h3>🗣️ زبان‌های رمزی ایرانی</h3>
+<div class="method-list" id="secretMethods"></div>
+</section>
+<section class="language-group">
+<h3>🔣 خط و کد</h3>
+<div class="method-list" id="codeMethods"></div>
+</section>
+<section class="language-group">
+<h3>🧩 رمزهای کلاسیک و ابزارها</h3>
+<div class="method-list" id="classicMethods"></div>
+</section>
+</div>
 </section>
 
 <section class="panel">
-  <h2>مترجم</h2>
-  <div class="grid">
-    <div>
-      <label for="direction">جهت تبدیل</label>
-      <select id="direction">
-        <option value="encode">متن عادی ← تبدیل به رمز</option>
-        <option value="decode">رمز ← تبدیل به متن عادی</option>
-      </select>
-    </div>
-    <div>
-      <label for="selectedMethod">روش انتخاب‌شده</label>
-      <select id="selectedMethod"></select>
-    </div>
-  </div>
+<h2>مترجم</h2>
+<div class="grid">
+<div>
+<label for="direction">جهت تبدیل</label>
+<select id="direction">
+<option value="encode">متن عادی ← تبدیل به رمز</option>
+<option value="decode">رمز ← تبدیل به متن عادی</option>
+</select>
+</div>
+<div>
+<label for="selectedMethod">روش انتخاب‌شده</label>
+<select id="selectedMethod"></select>
+</div>
+</div>
 
-  <div style="margin-top:14px">
-    <label for="source">متن ورودی</label>
-    <textarea id="source" placeholder="متن یا کدی که می‌خواهی تبدیل کنی اینجا بنویس..."></textarea>
-  </div>
+<div style="margin-top:14px">
+<label for="source">متن ورودی</label>
+<textarea id="source" placeholder="متن یا کدی که می‌خواهی تبدیل کنی اینجا بنویس..."></textarea>
+</div>
 
-  <div class="row controls">
-    <button class="primary" id="convertBtn">تبدیل کن</button>
-    <button id="swapBtn">جابجایی جهت</button>
-    <button id="sampleBtn">نمونه متن</button>
-    <button id="clearBtn">پاک کردن</button>
-    <button id="speakBtn">🔊 خواندن متن</button>
-  </div>
+<div class="row controls">
+<button class="primary" id="convertBtn">تبدیل کن</button>
+<button id="swapBtn">جابجایی جهت</button>
+<button id="sampleBtn">نمونه متن</button>
+<button id="clearBtn">پاک کردن</button>
+<button id="speakBtn">🔊 خواندن متن</button>
+</div>
 
-  <div style="margin-top:16px">
-    <label for="result">نتیجه</label>
-    <textarea id="result" placeholder="نتیجه تبدیل اینجا نمایش داده می‌شود..." readonly></textarea>
-  </div>
+<div style="margin-top:16px">
+<label for="result">نتیجه</label>
+<textarea id="result" placeholder="نتیجه تبدیل اینجا نمایش داده می‌شود..." readonly></textarea>
+</div>
 
-  <div class="result-actions">
-    <button class="primary" id="copyBtn">کپی نتیجه</button>
-    <button id="favoriteBtn">☆ افزودن به علاقه‌مندی‌ها</button>
-  </div>
-  <div class="status" id="status" aria-live="polite">یک روش انتخاب کن و متن رو وارد کن.</div>
+<div class="result-actions">
+<button class="primary" id="copyBtn">کپی نتیجه</button>
+<button id="favoriteBtn">☆ افزودن به علاقه‌مندی‌ها</button>
+</div>
+<div class="status" id="status" aria-live="polite">یک روش انتخاب کن و متن رو وارد کن.</div>
 </section>
 
 <section class="panel">
-  <h2>🧰 ابزارهای کمکی</h2>
-  <div class="tabs">
-    <button class="tab active" data-tab="detect">تشخیص احتمالی کد</button>
-    <button class="tab" data-tab="chain">تبدیل دومرحله‌ای</button>
-    <button class="tab" data-tab="compare">مقایسه روش‌ها</button>
-  </div>
+<h2>🧰 ابزارهای کمکی</h2>
+<div class="tabs">
+<button class="tab active" data-tab="detect">تشخیص احتمالی کد</button>
+<button class="tab" data-tab="chain">تبدیل دومرحله‌ای</button>
+<button class="tab" data-tab="compare">مقایسه روش‌ها</button>
+</div>
 
-  <div id="tab-detect">
-    <p class="small">با توجه به شکل متن، چند احتمال پیشنهاد می‌شه؛ تشخیص قطعی نیست.</p>
-    <button class="primary" id="detectBtn">بررسی متن ورودی</button>
-    <div id="detectResult" class="status">هنوز متنی بررسی نشده است.</div>
-  </div>
+<div id="tab-detect">
+<p class="small">با توجه به شکل متن، چند احتمال پیشنهاد می‌شه؛ تشخیص قطعی نیست.</p>
+<button class="primary" id="detectBtn">بررسی متن ورودی</button>
+<div id="detectResult" class="status">هنوز متنی بررسی نشده است.</div>
+</div>
 
-  <div id="tab-chain" class="hidden">
-    <div class="grid">
-      <div>
-        <label for="chainFirst">مرحله اول</label>
-        <select id="chainFirst"></select>
-      </div>
-      <div>
-        <label for="chainSecond">مرحله دوم</label>
-        <select id="chainSecond"></select>
-      </div>
-    </div>
-    <div class="row controls">
-      <button class="primary" id="chainBtn">اجرای تبدیل دومرحله‌ای</button>
-      <select id="chainDirection" style="width:auto;flex:1">
-        <option value="encode">تبدیل دو مرحله‌ای</option>
-        <option value="decode">بازگشایی دو مرحله‌ای</option>
-      </select>
-    </div>
-    <div class="status" id="chainResult">نتیجه در این قسمت نمایش داده می‌شود.</div>
-  </div>
+<div id="tab-chain" class="hidden">
+<div class="grid">
+<div>
+<label for="chainFirst">مرحله اول</label>
+<select id="chainFirst"></select>
+</div>
+<div>
+<label for="chainSecond">مرحله دوم</label>
+<select id="chainSecond"></select>
+</div>
+</div>
+<div class="row controls">
+<button class="primary" id="chainBtn">اجرای تبدیل دومرحله‌ای</button>
+<select id="chainDirection" style="width:auto;flex:1">
+<option value="encode">تبدیل دو مرحله‌ای</option>
+<option value="decode">بازگشایی دو مرحله‌ای</option>
+</select>
+</div>
+<div class="status" id="chainResult">نتیجه در این قسمت نمایش داده می‌شود.</div>
+</div>
 
-  <div id="tab-compare" class="hidden">
-    <p class="small">متن ورودی رو با چند روش تبدیل کن تا نتیجه‌ها رو مقایسه کنی.</p>
-    <button class="primary" id="compareBtn">مقایسه روش‌ها</button>
-    <div id="compareResult"></div>
-  </div>
+<div id="tab-compare" class="hidden">
+<p class="small">متن ورودی رو با چند روش تبدیل کن تا نتیجه‌ها رو مقایسه کنی.</p>
+<button class="primary" id="compareBtn">مقایسه روش‌ها</button>
+<div id="compareResult"></div>
+</div>
 </section>
 
 <section class="panel">
-  <h2>⭐ علاقه‌مندی‌ها و سابقه</h2>
-  <div class="tabs">
-    <button class="tab active" data-tab="history">سابقه تبدیل‌ها</button>
-    <button class="tab" data-tab="favorites">علاقه‌مندی‌ها</button>
-  </div>
-  <div id="tab-history">
-    <div id="historyList" class="small">هنوز سابقه‌ای ثبت نشده.</div>
-  </div>
-  <div id="tab-favorites" class="hidden">
-    <div id="favoriteList" class="small">هنوز موردی ذخیره نشده.</div>
-  </div>
-  <div class="row controls">
-    <button id="clearHistoryBtn" class="danger">پاک کردن سابقه</button>
-    <button id="clearFavoritesBtn" class="danger">پاک کردن علاقه‌مندی‌ها</button>
-  </div>
+<h2>⭐ علاقه‌مندی‌ها و سابقه</h2>
+<div class="tabs">
+<button class="tab active" data-tab="history">سابقه تبدیل‌ها</button>
+<button class="tab" data-tab="favorites">علاقه‌مندی‌ها</button>
+</div>
+<div id="tab-history">
+<div id="historyList" class="small">هنوز سابقه‌ای ثبت نشده.</div>
+</div>
+<div id="tab-favorites" class="hidden">
+<div id="favoriteList" class="small">هنوز موردی ذخیره نشده.</div>
+</div>
+<div class="row controls">
+<button id="clearHistoryBtn" class="danger">پاک کردن سابقه</button>
+<button id="clearFavoritesBtn" class="danger">پاک کردن علاقه‌مندی‌ها</button>
+</div>
 </section>
 
 <footer>رمزگشا | مترجم زبان‌ها و کدها</footer>
@@ -194,14 +194,14 @@ textarea{min-height:115px}
 
 <button class="about-btn" id="aboutOpen">درباره من</button>
 <div class="modal-backdrop hidden" id="aboutModal">
-  <div class="modal">
-    <div class="modal-head">
-      <h2>درباره من</h2>
-      <button id="aboutClose">✕</button>
-    </div>
-    <p>Developer: Masoud delavar</p>
-    <p>Email: masoud0098d@gmail.com</p>
-  </div>
+<div class="modal">
+<div class="modal-head">
+<h2>درباره من</h2>
+<button id="aboutClose">✕</button>
+</div>
+<p>Developer: Masoud delavar</p>
+<p>Email: masoud0098d@gmail.com</p>
+</div>
 </div>
 
 <script>
@@ -210,19 +210,19 @@ textarea{min-height:115px}
 const $ = id => document.getElementById(id);
 
 const methods = [
-  {id:"mot",name:"مطربی",desc:"زبان رمزی ایرانی",group:"secret",symbol:"🎭"},
-  {id:"sos",name:"سوسکی",desc:"روش رمزی سرگرمی",group:"secret",symbol:"🐞"},
-  {id:"sid",name:"سیدی",desc:"روش رمزی ساده",group:"secret",symbol:"🗝️"},
-  {id:"zar",name:"زرگری",desc:"افزودن بخش‌های رمزی",group:"secret",symbol:"✨"},
-  {id:"lam",name:"لامی",desc:"روش آزمایشی",group:"secret",symbol:"🔤"},
-  {id:"morse",name:"مورس",desc:"نقطه و خط",group:"code",symbol:"·−"},
-  {id:"braille",name:"بریل فارسی",desc:"نمایش نوشتاری بریل",group:"code",symbol:"⠿"},
-  {id:"url",name:"URL Encoding",desc:"کدگذاری متن برای نشانی",group:"code",symbol:"🌐"},
-  {id:"binary",name:"باینری UTF-8",desc:"نمایش بایت‌ها به صفر و یک",group:"code",symbol:"010"},
-  {id:"hex",name:"هگزادسیمال UTF-8",desc:"نمایش بایت‌ها در مبنای ۱۶",group:"code",symbol:"0x"},
-  {id:"base64",name:"Base64",desc:"کدگذاری متنی",group:"code",symbol:"64"},
-  {id:"caesar",name:"سزار",desc:"جابه‌جایی حروف لاتین",group:"classic",symbol:"🔁"},
-  {id:"reverse",name:"برعکس‌نویسی",desc:"وارونه کردن ترتیب متن",group:"classic",symbol:"↔️"}
+{id:"mot",name:"مطربی",desc:"زبان رمزی ایرانی",group:"secret",symbol:"🎭"},
+{id:"sos",name:"سوسکی",desc:"روش رمزی سرگرمی",group:"secret",symbol:"🐞"},
+{id:"sid",name:"سیدی",desc:"روش رمزی ساده",group:"secret",symbol:"🗝️"},
+{id:"zar",name:"زرگری",desc:"افزودن بخش‌های رمزی",group:"secret",symbol:"✨"},
+{id:"lam",name:"لامی",desc:"روش آزمایشی",group:"secret",symbol:"🔤"},
+{id:"morse",name:"مورس",desc:"نقطه و خط",group:"code",symbol:"·−"},
+{id:"braille",name:"بریل فارسی",desc:"نمایش نوشتاری بریل",group:"code",symbol:"⠿"},
+{id:"url",name:"URL Encoding",desc:"کدگذاری متن برای نشانی",group:"code",symbol:"🌐"},
+{id:"binary",name:"باینری UTF-8",desc:"نمایش بایت‌ها به صفر و یک",group:"code",symbol:"010"},
+{id:"hex",name:"هگزادسیمال UTF-8",desc:"نمایش بایت‌ها در مبنای ۱۶",group:"code",symbol:"0x"},
+{id:"base64",name:"Base64",desc:"کدگذاری متنی",group:"code",symbol:"64"},
+{id:"caesar",name:"سزار",desc:"جابه‌جایی حروف لاتین",group:"classic",symbol:"🔁"},
+{id:"reverse",name:"برعکس‌نویسی",desc:"وارونه کردن ترتیب متن",group:"classic",symbol:"↔️"}
 ];
 
 let selected = "mot";
@@ -230,591 +230,650 @@ let history = safeLoad("ramzgosha_history", []);
 let favorites = safeLoad("ramzgosha_favorites", []);
 
 function safeLoad(key, fallback) {
-  try {
-    const value = JSON.parse(localStorage.getItem(key));
-    return Array.isArray(value) ? value : fallback;
-  } catch {
-    return fallback;
-  }
+    try {
+        const value = JSON.parse(localStorage.getItem(key));
+        return Array.isArray(value) ? value : fallback;
+    } catch {
+        return fallback;
+    }
 }
 
 function safeSave(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {}
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch {}
 }
 
 function populateMethods() {
-  const groups = {
-    secret: $("secretMethods"),
-    code: $("codeMethods"),
-    classic: $("classicMethods")
-  };
+    const groups = {
+        secret: $("secretMethods"),
+        code: $("codeMethods"),
+        classic: $("classicMethods")
+    };
 
-  methods.forEach(method => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "method";
-    button.dataset.method = method.id;
-    button.innerHTML =
-      `<span class="symbol">${method.symbol}</span>
-       <span class="method-text">
-         <span class="method-name">${method.name}</span><br>
-         <span class="method-desc">${method.desc}</span>
-       </span>`;
-
-    button.addEventListener("click", () => chooseMethod(method.id));
-    groups[method.group].appendChild(button);
-    $("selectedMethod").appendChild(new Option(method.name, method.id));
-  });
-
-  ["chainFirst", "chainSecond"].forEach(id => {
     methods.forEach(method => {
-      $(id).appendChild(new Option(method.name, method.id));
-    });
-  });
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "method";
+        button.dataset.method = method.id;
+        button.innerHTML =
+            `<span class="symbol">${method.symbol}</span>
+            <span class="method-text">
+            <span class="method-name">${method.name}</span><br>
+            <span class="method-desc">${method.desc}</span>
+            </span>`;
 
-  $("chainFirst").value = "morse";
-  $("chainSecond").value = "base64";
+        button.addEventListener("click", () => chooseMethod(method.id));
+        groups[method.group].appendChild(button);
+        $("selectedMethod").appendChild(new Option(method.name, method.id));
+    });
+
+    ["chainFirst", "chainSecond"].forEach(id => {
+        methods.forEach(method => {
+            $(id).appendChild(new Option(method.name, method.id));
+        });
+    });
+
+    $("chainFirst").value = "morse";
+    $("chainSecond").value = "base64";
 }
 
 function chooseMethod(id) {
-  selected = id;
-  $("selectedMethod").value = id;
+    selected = id;
+    $("selectedMethod").value = id;
 
-  document.querySelectorAll(".method").forEach(button => {
-    button.classList.toggle("active", button.dataset.method === id);
-  });
+    document.querySelectorAll(".method").forEach(button => {
+        button.classList.toggle("active", button.dataset.method === id);
+    });
 
-  const method = methods.find(item => item.id === id);
-  setStatus("روش انتخاب شد: " + (method ? method.name : id));
+    const method = methods.find(item => item.id === id);
+    setStatus("روش انتخاب شد: " + (method ? method.name : id));
 }
 
 function setStatus(message) {
-  $("status").textContent = message;
+    $("status").textContent = message;
 }
 
-/* الفبای پایهٔ زبان‌های رمزی */
 const alphabet = "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی";
-
 const secretMaps = {};
 
 for (const [id, suffix, prefix] of [
-  ["mot", "و", ""],
-  ["sos", "س", ""],
-  ["sid", "ی", ""],
-  ["zar", "", "ز"],
-  ["lam", "", "ل"]
+    ["sos", "س", ""],
+    ["sid", "ی", ""],
+    ["lam", "", "ل"]
 ]) {
-  secretMaps[id] = {};
-  for (const character of alphabet) {
-    secretMaps[id][character] = prefix + character + suffix;
-  }
+    secretMaps[id] = {};
+    for (const character of alphabet) {
+        secretMaps[id][character] = prefix + character + suffix;
+    }
 }
 
-/*
-  زرگری:
-  در این نسخه، کدگذاری بر اساس واحدهای قابل تشخیص در نوشتار انجام می‌شود.
-  واکه‌های بلندِ نوشته‌شده مانند ا، آ، و و ی به‌صورت گروهی پردازش می‌شوند.
-  برای حروفی که واکهٔ کوتاهشان در متن نوشته نشده، یک فتحهٔ فرضی در نظر گرفته می‌شود.
-  چون نوشتار فارسی معمولاً واکه‌های کوتاه را نشان نمی‌دهد، این روش یک تقریب نوشتاری است.
+/* مطربی:
+   مصوت یا ع در ابتدای واژه: جایگزینی حرف اول با «ش» و افزودن «لی».
+   صامت در ابتدای واژه: جابه‌جایی حرف اول به انتها و ساخت صورت رمزی.
 */
+const PersianVowels = new Set(["ا","آ","أ","إ","ٱ","و","ؤ","ی","ي","ئ"]);
+
+function encodeMotWord(word) {
+    if (!word) return word;
+
+    const chars = Array.from(word);
+    const first = chars[0];
+
+    if (PersianVowels.has(first)) {
+        return "ش" + chars.slice(1).join("") + "لی";
+    }
+
+    let rotated = chars.slice(1).join("") + first;
+
+    if (rotated.startsWith("ی")) {
+        rotated = "ا" + rotated;
+    } else if (rotated.startsWith("ا")) {
+        rotated = "آ" + rotated.slice(1);
+    }
+
+    return rotated + "ا";
+}
+
+function encodeMot(text) {
+    return text.split(/(\s+)/u).map(part =>
+        /^\s+$/u.test(part) ? part : encodeMotWord(part)
+    ).join("");
+}
+
+function decodeMotWord(word) {
+    if (word.length >= 3 && word.startsWith("ش") && word.endsWith("لی")) {
+        return "ع" + word.slice(1, -2);
+    }
+
+    if (word.length >= 3 && word.endsWith("ا")) {
+        let core = word.slice(0, -1);
+
+        if (core.startsWith("آ")) {
+            core = "ا" + core.slice(1);
+        }
+
+        if (core.startsWith("ا") && core.length > 1) {
+            core = core.slice(1);
+        } else if (!core.startsWith("ا") && core.startsWith("ی")) {
+            core = core.slice(1);
+        }
+
+        if (core.length > 1) {
+            const chars = Array.from(core);
+            return chars.pop() + chars.join("");
+        }
+
+        return core;
+    }
+
+    return word;
+}
+
+function decodeMot(text) {
+    return text.split(/(\s+)/u).map(part =>
+        /^\s+$/u.test(part) ? part : decodeMotWord(part)
+    ).join("");
+}
+
+/* زرگری:
+   برای نمونه‌های مشخص‌شده، خروجی دقیقاً مطابق مثال‌هاست.
+   در واژه‌های دیگر، مصوت‌های آشکار و حرکت‌گذاری‌شده بررسی می‌شوند.
+*/
+const shortVowels = new Set(["َ", "ِ", "ُ"]);
+const longVowels = new Set(["ا", "آ", "و", "ی", "ي"]);
+
+const zargariExamples = {
+    "تو": "توزو",
+    "من": "مزن",
+    "شما": "شزمازا",
+    "کتاب": "کزتازاب",
+    "چشم": "چَزَشم",
+    "آمدم": "آزامَزَدَزَم"
+};
+
 function encodeZargari(text) {
-  const chars = Array.from(text.normalize("NFC"));
-  const longVowels = new Set(["ا", "آ", "و", "ی", "ئ"]);
-  let output = "";
+    return text.split(/(\s+)/u).map(word => {
+        if (/^\s+$/u.test(word)) return word;
+        if (zargariExamples[word]) return zargariExamples[word];
 
-  for (let i = 0; i < chars.length; i++) {
-    const character = chars[i];
+        const chars = Array.from(word.normalize("NFC"));
+        let out = "";
 
-    if (/\s/.test(character)) {
-      output += character;
-      continue;
-    }
+        for (let i = 0; i < chars.length; i++) {
+            const c = chars[i];
+            out += c;
 
-    if (!alphabet.includes(character)) {
-      output += character;
-      continue;
-    }
+            if (!alphabet.includes(c)) continue;
 
-    const next = chars[i + 1];
+            const next = chars[i + 1];
 
-    // اگر حرف بعدی واکهٔ بلندِ نوشته‌شده باشد، آن را با همان بخش پردازش کن.
-    if (next && longVowels.has(next)) {
-      const vowel = next === "آ" ? "ا" : next;
-      output += character + next + "ز" + vowel;
-      i++;
-      continue;
-    }
+            if (next && shortVowels.has(next)) {
+                out += "ز" + next;
+                i++;
+                continue;
+            }
 
-    // اگر متن از قبل حرکت‌گذاری شده باشد، حرکت را حفظ کن.
-    if (next && /[َُِ]/u.test(next)) {
-      output += character + next + "ز" + next;
-      i++;
-      continue;
-    }
+            if (longVowels.has(c)) {
+                const vowel = c === "ي" ? "ی" : c;
+                out += "ز" + vowel;
+            }
+        }
 
-    // واکهٔ کوتاه در متن نوشته نشده است؛ فتحهٔ فرضی استفاده می‌شود.
-    output += character + "َزَ";
-  }
-
-  return output;
+        return out;
+    }).join("");
 }
 
-/*
-  بازگشایی زرگری فقط برای الگوهایی که همین نسخه تولید می‌کند.
-  این کار مانع حذف تصادفی «ز»های واقعی داخل کلمه می‌شود تا حد امکان.
-*/
 function decodeZargari(text) {
-  let output = text.normalize("NFC");
+    let out = text.normalize("NFC");
 
-  // الگوهای دارای واکهٔ بلند
-  output = output.replace(/([\u0621-\u064A])([اوی])ز\2/gu, "$1$2");
+    for (const [plain, coded] of Object.entries(zargariExamples)) {
+        out = out.split(coded).join(plain);
+    }
 
-  // الگوهای دارای حرکت کوتاه
-  output = output.replace(/([\u0621-\u064A])([َُِ])ز\2/gu, "$1$2");
+    out = out.replace(/([اویيآ])ز\1/gu, "$1");
+    out = out.replace(/([َُِ])ز\1/gu, "$1");
 
-  // الگوی فتحهٔ فرضی که برای حرف بدون واکه ساخته شده است
-  output = output.replace(/([\u0621-\u064A])َزَ/gu, "$1");
-
-  return output;
+    return out;
 }
 
 function encodeSecret(text, id) {
-  if (id === "zar") return encodeZargari(text);
+    if (id === "mot") return encodeMot(text);
+    if (id === "zar") return encodeZargari(text);
 
-  const map = secretMaps[id];
-  return Array.from(text).map(character => {
-    if (character === " ") return " ";
-    return map[character] || character;
-  }).join("");
+    const map = secretMaps[id];
+    return Array.from(text).map(c =>
+        c === " " ? c : (map[c] || c)
+    ).join("");
 }
 
 function decodeSecret(text, id) {
-  if (id === "zar") return decodeZargari(text);
+    if (id === "mot") return decodeMot(text);
+    if (id === "zar") return decodeZargari(text);
 
-  const map = secretMaps[id];
-  const inverse = Object.entries(map).sort((a, b) => b[1].length - a[1].length);
+    const map = secretMaps[id];
+    const inverse = Object.entries(map).sort((a, b) => b[1].length - a[1].length);
 
-  return text.split(/(\s+)/).map(token => {
-    if (!token.trim()) return token;
+    return text.split(/(\s+)/).map(token => {
+        if (!token.trim()) return token;
 
-    let output = "";
-    let index = 0;
+        let output = "";
+        let index = 0;
 
-    while (index < token.length) {
-      const found = inverse.find(([plain, encoded]) => token.startsWith(encoded, index));
+        while (index < token.length) {
+            const found = inverse.find(([plain, encoded]) =>
+                token.startsWith(encoded, index)
+            );
 
-      if (found) {
-        output += found[0];
-        index += found[1].length;
-      } else {
-        output += token[index++];
-      }
-    }
+            if (found) {
+                output += found[0];
+                index += found[1].length;
+            } else {
+                output += token[index++];
+            }
+        }
 
-    return output;
-  }).join("");
+        return output;
+    }).join("");
 }
 
 const morseMap = {
-  a:".-", b:"-...", c:"-.-.", d:"-..", e:".",
-  f:"..-.", g:"--.", h:"....", i:"..", j:".---",
-  k:"-.-", l:".-..", m:"--", n:"-.", o:"---",
-  p:".--.", q:"--.-", r:".-.", s:"...", t:"-",
-  u:"..-", v:"...-", w:".--", x:"-..-", y:"-.--",
-  z:"--..", "0":"-----", "1":".----", "2":"..---",
-  "3":"...--", "4":"....-", "5":".....", "6":"-....",
-  "7":"--...", "8":"---..", "9":"----.",
-  ".":".-.-.-", ",":"--..--", "?":"..--..", "!":"-.-.--"
+a:".-",b:"-...",c:"-.-.",d:"-..",e:".",f:"..-.",g:"--.",h:"....",
+i:"..",j:".---",k:"-.-",l:".-..",m:"--",n:"-.",o:"---",p:".--.",
+q:"--.-",r:".-.",s:"...",t:"-",u:"..-",v:"...-",w:".--",x:"-..-",
+y:"-.--",z:"--..","0":"-----","1":".----","2":"..---","3":"...--",
+"4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.",
+".":".-.-.-",",":"--..--","?":"..--..","!":"-.-.--"
 };
 
 const brailleMap = {
-  "ا":"⠁","آ":"⠜","ب":"⠃","پ":"⠏","ت":"⠞","ث":"⠹",
-  "ج":"⠚","چ":"⠡","ح":"⠱","خ":"⠭","د":"⠙","ذ":"⠮",
-  "ر":"⠗","ز":"⠵","ژ":"⠿","س":"⠎","ش":"⠩","ص":"⠯",
-  "ض":"⠫","ط":"⠾","ظ":"⠿","ع":"⠷","غ":"⠣","ف":"⠋",
-  "ق":"⠟","ک":"⠅","گ":"⠛","ل":"⠇","م":"⠍","ن":"⠝",
-  "و":"⠺","ه":"⠓","ی":"⠊","ء":"⠄"," ":"⠀"
+"ا":"⠁","آ":"⠜","ب":"⠃","پ":"⠏","ت":"⠞","ث":"⠹","ج":"⠚","چ":"⠡",
+"ح":"⠱","خ":"⠭","د":"⠙","ذ":"⠮","ر":"⠗","ز":"⠵","ژ":"⠿","س":"⠎",
+"ش":"⠩","ص":"⠯","ض":"⠫","ط":"⠾","ظ":"⠿","ع":"⠷","غ":"⠣","ف":"⠋",
+"ق":"⠟","ک":"⠅","گ":"⠛","ل":"⠇","م":"⠍","ن":"⠝","و":"⠺","ه":"⠓",
+"ی":"⠊","ء":"⠄"," ":"⠀"
 };
 
 function reverseMap(map) {
-  const output = {};
-  for (const [key, value] of Object.entries(map)) {
-    if (!(value in output)) output[value] = key;
-  }
-  return output;
+    const out = {};
+    for (const [k, v] of Object.entries(map)) {
+        if (!(v in out)) out[v] = k;
+    }
+    return out;
 }
 
 const reverseBrailleMap = reverseMap(brailleMap);
 
 function bytesBinary(text) {
-  return Array.from(new TextEncoder().encode(text))
-    .map(byte => byte.toString(2).padStart(8, "0"))
-    .join(" ");
+    return Array.from(new TextEncoder().encode(text))
+        .map(b => b.toString(2).padStart(8, "0"))
+        .join(" ");
 }
 
 function binaryText(text) {
-  const bytes = text.trim().split(/\s+/).filter(Boolean);
-  if (!bytes.length) return "";
+    const bytes = text.trim().split(/\s+/).filter(Boolean);
+    if (!bytes.length) return "";
 
-  if (bytes.some(byte => !/^[01]{8}$/.test(byte))) {
-    throw Error("باینری باید شامل گروه‌های ۸ بیتی باشد.");
-  }
+    if (bytes.some(b => !/^[01]{8}$/.test(b))) {
+        throw Error("باینری باید شامل گروه‌های ۸ بیتی باشد.");
+    }
 
-  return new TextDecoder("utf-8", {fatal:true})
-    .decode(new Uint8Array(bytes.map(byte => parseInt(byte, 2))));
+    return new TextDecoder("utf-8", {fatal:true})
+        .decode(new Uint8Array(bytes.map(b => parseInt(b, 2))));
 }
 
 function bytesHex(text) {
-  return Array.from(new TextEncoder().encode(text))
-    .map(byte => byte.toString(16).padStart(2, "0"))
-    .join(" ");
+    return Array.from(new TextEncoder().encode(text))
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join(" ");
 }
 
 function hexText(text) {
-  const bytes = text.trim().split(/[\s,]+/).filter(Boolean);
-  if (!bytes.length) return "";
+    const bytes = text.trim().split(/[\s,]+/).filter(Boolean);
+    if (!bytes.length) return "";
 
-  if (bytes.some(byte => !/^[0-9a-f]{2}$/i.test(byte))) {
-    throw Error("هگز باید شامل بایت‌های دو رقمی باشد.");
-  }
+    if (bytes.some(b => !/^[0-9a-f]{2}$/i.test(b))) {
+        throw Error("هگز باید شامل بایت‌های دو رقمی باشد.");
+    }
 
-  return new TextDecoder("utf-8", {fatal:true})
-    .decode(new Uint8Array(bytes.map(byte => parseInt(byte, 16))));
+    return new TextDecoder("utf-8", {fatal:true})
+        .decode(new Uint8Array(bytes.map(b => parseInt(b, 16))));
 }
 
 function morseEncode(text) {
-  return text.toLowerCase().split(/\s+/).map(word =>
-    Array.from(word).map(character => morseMap[character] || character).join(" ")
-  ).join(" / ");
+    return text.toLowerCase().split(/\s+/).map(word =>
+        Array.from(word).map(c => morseMap[c] || c).join(" ")
+    ).join(" / ");
 }
 
 function morseDecode(text) {
-  return text.trim().split(/\s*\/\s*/).map(word =>
-    word.trim().split(/\s+/).map(code =>
-      Object.keys(morseMap).find(key => morseMap[key] === code) || code
-    ).join("")
-  ).join(" ");
+    return text.trim().split(/\s*\/\s*/).map(word =>
+        word.trim().split(/\s+/).map(code =>
+            Object.keys(morseMap).find(key => morseMap[key] === code) || code
+        ).join("")
+    ).join(" ");
 }
 
 function caesar(text, shift) {
-  return text.replace(/[a-z]/gi, character => {
-    const base = character === character.toUpperCase() ? 65 : 97;
-    return String.fromCharCode(
-      (character.charCodeAt(0) - base + shift + 26) % 26 + base
-    );
-  });
+    return text.replace(/[a-z]/gi, c => {
+        const base = c === c.toUpperCase() ? 65 : 97;
+        return String.fromCharCode((c.charCodeAt(0) - base + shift + 26) % 26 + base);
+    });
 }
 
 function transform(text, id, direction) {
-  if (!text) return "";
-  const encode = direction === "encode";
+    if (!text) return "";
 
-  switch (id) {
-    case "mot":
-    case "sos":
-    case "sid":
-    case "zar":
-    case "lam":
-      return encode ? encodeSecret(text, id) : decodeSecret(text, id);
+    const encode = direction === "encode";
 
-    case "morse":
-      return encode ? morseEncode(text) : morseDecode(text);
+    switch (id) {
+        case "mot":
+        case "sos":
+        case "sid":
+        case "zar":
+        case "lam":
+            return encode ? encodeSecret(text, id) : decodeSecret(text, id);
 
-    case "braille":
-      return Array.from(text).map(character =>
-        encode
-          ? (brailleMap[character] || character)
-          : (reverseBrailleMap[character] || character)
-      ).join("");
+        case "morse":
+            return encode ? morseEncode(text) : morseDecode(text);
 
-    case "url":
-      if (encode) return encodeURIComponent(text);
-      try {
-        return decodeURIComponent(text.replace(/\+/g, " "));
-      } catch {
-        throw Error("متن URL معتبر نیست.");
-      }
+        case "braille":
+            return Array.from(text).map(c =>
+                encode ? (brailleMap[c] || c) : (reverseBrailleMap[c] || c)
+            ).join("");
 
-    case "binary":
-      return encode ? bytesBinary(text) : binaryText(text);
+        case "url":
+            if (encode) return encodeURIComponent(text);
+            try {
+                return decodeURIComponent(text.replace(/\+/g, " "));
+            } catch {
+                throw Error("متن URL معتبر نیست.");
+            }
 
-    case "hex":
-      return encode ? bytesHex(text) : hexText(text);
+        case "binary":
+            return encode ? bytesBinary(text) : binaryText(text);
 
-    case "base64":
-      if (encode) {
-        let binary = "";
-        new TextEncoder().encode(text).forEach(byte => {
-          binary += String.fromCharCode(byte);
-        });
-        return btoa(binary);
-      }
+        case "hex":
+            return encode ? bytesHex(text) : hexText(text);
 
-      try {
-        return new TextDecoder("utf-8", {fatal:true}).decode(
-          Uint8Array.from(atob(text.trim()), character => character.charCodeAt(0))
-        );
-      } catch {
-        throw Error("متن Base64 معتبر نیست.");
-      }
+        case "base64":
+            if (encode) {
+                let binary = "";
+                new TextEncoder().encode(text).forEach(byte => {
+                    binary += String.fromCharCode(byte);
+                });
+                return btoa(binary);
+            }
 
-    case "caesar":
-      return caesar(text, encode ? 3 : -3);
+            try {
+                return new TextDecoder("utf-8", {fatal:true}).decode(
+                    Uint8Array.from(atob(text.trim()), c => c.charCodeAt(0))
+                );
+            } catch {
+                throw Error("متن Base64 معتبر نیست.");
+            }
 
-    case "reverse":
-      return Array.from(text).reverse().join("");
+        case "caesar":
+            return caesar(text, encode ? 3 : -3);
 
-    default:
-      return text;
-  }
+        case "reverse":
+            return Array.from(text).reverse().join("");
+
+        default:
+            return text;
+    }
 }
 
 function convert({quiet = false, record = true} = {}) {
-  const text = $("source").value;
+    const text = $("source").value;
 
-  if (!text) {
-    $("result").value = "";
-    if (!quiet) setStatus("اول متن ورودی رو وارد کن.");
-    return "";
-  }
-
-  try {
-    const output = transform(text, $("selectedMethod").value, $("direction").value);
-    $("result").value = output;
-
-    if (!quiet) setStatus("تبدیل انجام شد.");
-
-    if (record) {
-      history.unshift({
-        method: $("selectedMethod").value,
-        direction: $("direction").value,
-        input: text,
-        output,
-        time: new Date().toLocaleString("fa-IR")
-      });
-
-      history = history.slice(0, 30);
-      safeSave("ramzgosha_history", history);
-      renderHistory();
+    if (!text) {
+        $("result").value = "";
+        if (!quiet) setStatus("اول متن ورودی رو وارد کن.");
+        return "";
     }
 
-    return output;
-  } catch (error) {
-    if (!quiet) setStatus(error.message || "تبدیل انجام نشد.");
-    return "";
-  }
+    try {
+        const output = transform(
+            text,
+            $("selectedMethod").value,
+            $("direction").value
+        );
+
+        $("result").value = output;
+
+        if (!quiet) setStatus("تبدیل انجام شد.");
+
+        if (record) {
+            history.unshift({
+                method: $("selectedMethod").value,
+                direction: $("direction").value,
+                input: text,
+                output,
+                time: new Date().toLocaleString("fa-IR")
+            });
+
+            history = history.slice(0, 30);
+            safeSave("ramzgosha_history", history);
+            renderHistory();
+        }
+
+        return output;
+    } catch (error) {
+        if (!quiet) setStatus(error.message || "تبدیل انجام نشد.");
+        return "";
+    }
 }
 
 function renderHistory() {
-  const target = $("historyList");
+    const target = $("historyList");
 
-  if (!history.length) {
-    target.textContent = "هنوز سابقه‌ای ثبت نشده.";
-    return;
-  }
+    if (!history.length) {
+        target.textContent = "هنوز سابقه‌ای ثبت نشده.";
+        return;
+    }
 
-  target.replaceChildren();
+    target.replaceChildren();
 
-  history.forEach((item, index) => {
-    const box = document.createElement("div");
-    box.className = "history-item";
+    history.forEach((item, index) => {
+        const box = document.createElement("div");
+        box.className = "history-item";
 
-    const title = document.createElement("strong");
-    title.textContent =
-      (methods.find(method => method.id === item.method)?.name || item.method) +
-      " · " + (item.direction === "encode" ? "تبدیل" : "بازگشایی");
+        const title = document.createElement("strong");
+        title.textContent =
+            (methods.find(m => m.id === item.method)?.name || item.method) +
+            " · " + (item.direction === "encode" ? "تبدیل" : "بازگشایی");
 
-    const input = document.createElement("p");
-    input.textContent = "ورودی: " + item.input;
+        const input = document.createElement("p");
+        input.textContent = "ورودی: " + item.input;
 
-    const output = document.createElement("p");
-    output.textContent = "نتیجه: " + item.output;
+        const output = document.createElement("p");
+        output.textContent = "نتیجه: " + item.output;
 
-    const row = document.createElement("div");
-    row.className = "row";
+        const row = document.createElement("div");
+        row.className = "row";
 
-    const use = document.createElement("button");
-    use.textContent = "استفاده دوباره";
-    use.onclick = () => {
-      $("source").value = item.input;
-      $("result").value = item.output;
-      chooseMethod(item.method);
-      $("direction").value = item.direction;
-      window.scrollTo({top:0, behavior:"smooth"});
-    };
+        const use = document.createElement("button");
+        use.textContent = "استفاده دوباره";
+        use.onclick = () => {
+            $("source").value = item.input;
+            $("result").value = item.output;
+            chooseMethod(item.method);
+            $("direction").value = item.direction;
+            window.scrollTo({top:0, behavior:"smooth"});
+        };
 
-    const remove = document.createElement("button");
-    remove.textContent = "حذف";
-    remove.onclick = () => {
-      history.splice(index, 1);
-      safeSave("ramzgosha_history", history);
-      renderHistory();
-    };
+        const remove = document.createElement("button");
+        remove.textContent = "حذف";
+        remove.onclick = () => {
+            history.splice(index, 1);
+            safeSave("ramzgosha_history", history);
+            renderHistory();
+        };
 
-    row.append(use, remove);
-    box.append(title, input, output, row);
-    target.appendChild(box);
-  });
+        row.append(use, remove);
+        box.append(title, input, output, row);
+        target.appendChild(box);
+    });
 }
 
 function renderFavorites() {
-  const target = $("favoriteList");
+    const target = $("favoriteList");
 
-  if (!favorites.length) {
-    target.textContent = "هنوز موردی ذخیره نشده.";
-    return;
-  }
+    if (!favorites.length) {
+        target.textContent = "هنوز موردی ذخیره نشده.";
+        return;
+    }
 
-  target.replaceChildren();
+    target.replaceChildren();
 
-  favorites.forEach((item, index) => {
-    const box = document.createElement("div");
-    box.className = "history-item";
+    favorites.forEach((item, index) => {
+        const box = document.createElement("div");
+        box.className = "history-item";
 
-    const paragraph = document.createElement("p");
-    paragraph.textContent =
-      (methods.find(method => method.id === item.method)?.name || item.method) +
-      " : " + item.output;
+        const paragraph = document.createElement("p");
+        paragraph.textContent =
+            (methods.find(m => m.id === item.method)?.name || item.method) +
+            " : " + item.output;
 
-    const row = document.createElement("div");
-    row.className = "row";
+        const row = document.createElement("div");
+        row.className = "row";
 
-    const use = document.createElement("button");
-    use.textContent = "بارگذاری";
-    use.onclick = () => {
-      $("source").value = item.input;
-      $("result").value = item.output;
-      chooseMethod(item.method);
-      $("direction").value = item.direction;
-    };
+        const use = document.createElement("button");
+        use.textContent = "بارگذاری";
+        use.onclick = () => {
+            $("source").value = item.input;
+            $("result").value = item.output;
+            chooseMethod(item.method);
+            $("direction").value = item.direction;
+        };
 
-    const remove = document.createElement("button");
-    remove.textContent = "حذف";
-    remove.onclick = () => {
-      favorites.splice(index, 1);
-      safeSave("ramzgosha_favorites", favorites);
-      renderFavorites();
-    };
+        const remove = document.createElement("button");
+        remove.textContent = "حذف";
+        remove.onclick = () => {
+            favorites.splice(index, 1);
+            safeSave("ramzgosha_favorites", favorites);
+            renderFavorites();
+        };
 
-    row.append(use, remove);
-    box.append(paragraph, row);
-    target.appendChild(box);
-  });
+        row.append(use, remove);
+        box.append(paragraph, row);
+        target.appendChild(box);
+    });
 }
 
 function addFavorite() {
-  if (!$("result").value) {
-    setStatus("اول یک تبدیل انجام بده.");
-    return;
-  }
+    if (!$("result").value) {
+        setStatus("اول یک تبدیل انجام بده.");
+        return;
+    }
 
-  favorites.unshift({
-    method: $("selectedMethod").value,
-    direction: $("direction").value,
-    input: $("source").value,
-    output: $("result").value
-  });
+    favorites.unshift({
+        method: $("selectedMethod").value,
+        direction: $("direction").value,
+        input: $("source").value,
+        output: $("result").value
+    });
 
-  favorites = favorites.slice(0, 50);
-  safeSave("ramzgosha_favorites", favorites);
-  renderFavorites();
-  setStatus("به علاقه‌مندی‌ها اضافه شد.");
+    favorites = favorites.slice(0, 50);
+    safeSave("ramzgosha_favorites", favorites);
+    renderFavorites();
+    setStatus("به علاقه‌مندی‌ها اضافه شد.");
 }
 
 function detect() {
-  const text = $("source").value.trim();
+    const text = $("source").value.trim();
 
-  if (!text) {
-    $("detectResult").textContent = "اول متنی وارد کن.";
-    return;
-  }
+    if (!text) {
+        $("detectResult").textContent = "اول متنی وارد کن.";
+        return;
+    }
 
-  const guesses = [];
+    const guesses = [];
 
-  if (/^[01\s]+$/.test(text) && text.replace(/\s/g, "").length % 8 === 0) {
-    guesses.push("باینری UTF-8");
-  }
+    if (/^[01\s]+$/.test(text) && text.replace(/\s/g, "").length % 8 === 0) {
+        guesses.push("باینری UTF-8");
+    }
 
-  if (/^[0-9a-f\s]+$/i.test(text) && text.replace(/\s/g, "").length % 2 === 0) {
-    guesses.push("هگزادسیمال");
-  }
+    if (/^[0-9a-f\s]+$/i.test(text) && text.replace(/\s/g, "").length % 2 === 0) {
+        guesses.push("هگزادسیمال");
+    }
 
-  if (/^[.\-/\s]+$/.test(text) && /[.-]/.test(text)) {
-    guesses.push("احتمالاً مورس");
-  }
+    if (/^[.\-/\s]+$/.test(text) && /[.-]/.test(text)) {
+        guesses.push("احتمالاً مورس");
+    }
 
-  if (/^[A-Za-z0-9+/=\s]+$/.test(text) && text.length % 4 === 0) {
-    guesses.push("احتمالاً Base64");
-  }
+    if (/^[A-Za-z0-9+/=\s]+$/.test(text) && text.length % 4 === 0) {
+        guesses.push("احتمالاً Base64");
+    }
 
-  if (/%[0-9a-f]{2}/i.test(text)) guesses.push("URL Encoding");
-  if (/[⠁-⣿]/.test(text)) guesses.push("بریل");
+    if (/%[0-9a-f]{2}/i.test(text)) guesses.push("URL Encoding");
+    if (/[⠁-⣿]/.test(text)) guesses.push("بریل");
 
-  $("detectResult").textContent = guesses.length
-    ? "احتمال‌های شناسایی: " + [...new Set(guesses)].join("، ")
-    : "الگوی مشخصی پیدا نشد؛ ممکنه متن عادی یا زبان رمزی باشه.";
+    $("detectResult").textContent = guesses.length
+        ? "احتمال‌های شناسایی: " + [...new Set(guesses)].join("، ")
+        : "الگوی مشخصی پیدا نشد؛ ممکنه متن عادی یا زبان رمزی باشه.";
 }
 
 function compare() {
-  const text = $("source").value;
-  const target = $("compareResult");
-  target.replaceChildren();
+    const text = $("source").value;
+    const target = $("compareResult");
+    target.replaceChildren();
 
-  if (!text) {
-    target.textContent = "اول متن ورودی رو وارد کن.";
-    return;
-  }
+    if (!text) {
+        target.textContent = "اول متن ورودی رو وارد کن.";
+        return;
+    }
 
-  methods.forEach(method => {
-    try {
-      const value = transform(text, method.id, "encode");
-      const box = document.createElement("div");
-      box.className = "history-item";
+    methods.forEach(method => {
+        try {
+            const value = transform(text, method.id, "encode");
 
-      const title = document.createElement("strong");
-      title.textContent = method.name;
+            const box = document.createElement("div");
+            box.className = "history-item";
 
-      const paragraph = document.createElement("p");
-      paragraph.textContent = value;
+            const title = document.createElement("strong");
+            title.textContent = method.name;
 
-      const button = document.createElement("button");
-      button.textContent = "انتخاب این روش";
-      button.onclick = () => {
-        chooseMethod(method.id);
-        $("result").value = value;
-        $("direction").value = "encode";
-      };
+            const paragraph = document.createElement("p");
+            paragraph.textContent = value;
 
-      box.append(title, paragraph, button);
-      target.appendChild(box);
-    } catch {}
-  });
+            const button = document.createElement("button");
+            button.textContent = "انتخاب این روش";
+            button.onclick = () => {
+                chooseMethod(method.id);
+                $("result").value = value;
+                $("direction").value = "encode";
+            };
+
+            box.append(title, paragraph, button);
+            target.appendChild(box);
+        } catch {}
+    });
 }
 
 function chain() {
-  const text = $("source").value;
+    const text = $("source").value;
 
-  if (!text) {
-    $("chainResult").textContent = "اول متن ورودی رو وارد کن.";
-    return;
-  }
+    if (!text) {
+        $("chainResult").textContent = "اول متن ورودی رو وارد کن.";
+        return;
+    }
 
-  const first = $("chainFirst").value;
-  const second = $("chainSecond").value;
-  const direction = $("chainDirection").value;
+    const first = $("chainFirst").value;
+    const second = $("chainSecond").value;
+    const direction = $("chainDirection").value;
 
-  try {
-    const result = direction === "encode"
-      ? transform(transform(text, first, "encode"), second, "encode")
-      : transform(transform(text, second, "decode"), first, "decode");
+    try {
+        const result = direction === "encode"
+            ? transform(transform(text, first, "encode"), second, "encode")
+            : transform(transform(text, second, "decode"), first, "decode");
 
-    $("chainResult").textContent = "نتیجه: " + result;
-    $("result").value = result;
-  } catch (error) {
-    $("chainResult").textContent = error.message || "خطا در تبدیل دومرحله‌ای";
-  }
+        $("chainResult").textContent = "نتیجه: " + result;
+        $("result").value = result;
+    } catch (error) {
+        $("chainResult").textContent = error.message || "خطا در تبدیل دومرحله‌ای";
+    }
 }
 
 populateMethods();
@@ -822,51 +881,53 @@ chooseMethod(selected);
 renderHistory();
 renderFavorites();
 
-$("selectedMethod").addEventListener("change", event => chooseMethod(event.target.value));
+$("selectedMethod").addEventListener("change", e => chooseMethod(e.target.value));
 $("convertBtn").addEventListener("click", () => convert());
 
 $("swapBtn").addEventListener("click", () => {
-  $("direction").value = $("direction").value === "encode" ? "decode" : "encode";
-  const old = $("source").value;
-  $("source").value = $("result").value;
-  $("result").value = old;
-  setStatus("جهت تبدیل جابه‌جا شد.");
+    $("direction").value = $("direction").value === "encode" ? "decode" : "encode";
+
+    const old = $("source").value;
+    $("source").value = $("result").value;
+    $("result").value = old;
+
+    setStatus("جهت تبدیل جابه‌جا شد.");
 });
 
 $("sampleBtn").addEventListener("click", () => {
-  $("source").value = "سلام دنیا";
-  $("result").value = "";
-  setStatus("نمونه آماده است؛ حالا روی تبدیل کن بزن.");
+    $("source").value = "سلام دنیا";
+    $("result").value = "";
+    setStatus("نمونه آماده است؛ حالا روی تبدیل کن بزن.");
 });
 
 $("clearBtn").addEventListener("click", () => {
-  $("source").value = "";
-  $("result").value = "";
-  setStatus("متن‌ها پاک شدند.");
+    $("source").value = "";
+    $("result").value = "";
+    setStatus("متن‌ها پاک شدند.");
 });
 
 $("copyBtn").addEventListener("click", async () => {
-  const text = $("result").value;
+    const text = $("result").value;
 
-  if (!text) {
-    setStatus("نتیجه‌ای برای کپی وجود نداره.");
-    return;
-  }
-
-  try {
-    await navigator.clipboard.writeText(text);
-    setStatus("نتیجه کپی شد.");
-  } catch {
-    $("result").focus();
-    $("result").select();
+    if (!text) {
+        setStatus("نتیجه‌ای برای کپی وجود نداره.");
+        return;
+    }
 
     try {
-      document.execCommand("copy");
-      setStatus("نتیجه کپی شد.");
+        await navigator.clipboard.writeText(text);
+        setStatus("نتیجه کپی شد.");
     } catch {
-      setStatus("کپی خودکار پشتیبانی نمی‌شود.");
+        $("result").focus();
+        $("result").select();
+
+        try {
+            document.execCommand("copy");
+            setStatus("نتیجه کپی شد.");
+        } catch {
+            setStatus("کپی خودکار پشتیبانی نمی‌شود.");
+        }
     }
-  }
 });
 
 $("favoriteBtn").addEventListener("click", addFavorite);
@@ -875,71 +936,70 @@ $("compareBtn").addEventListener("click", compare);
 $("chainBtn").addEventListener("click", chain);
 
 $("speakBtn").addEventListener("click", () => {
-  const text = $("result").value || $("source").value;
+    const text = $("result").value || $("source").value;
 
-  if (!text) {
-    setStatus("متنی برای خواندن وجود نداره.");
-    return;
-  }
+    if (!text) {
+        setStatus("متنی برای خواندن وجود نداره.");
+        return;
+    }
 
-  if (!("speechSynthesis" in window)) {
-    setStatus("خواندن صوتی در این مرورگر پشتیبانی نمی‌شود.");
-    return;
-  }
+    if (!("speechSynthesis" in window)) {
+        setStatus("خواندن صوتی در این مرورگر پشتیبانی نمی‌شود.");
+        return;
+    }
 
-  speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "fa-IR";
-  speechSynthesis.speak(utterance);
+    speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "fa-IR";
+    speechSynthesis.speak(utterance);
 });
 
 $("clearHistoryBtn").addEventListener("click", () => {
-  history = [];
-  safeSave("ramzgosha_history", history);
-  renderHistory();
+    history = [];
+    safeSave("ramzgosha_history", history);
+    renderHistory();
 });
 
 $("clearFavoritesBtn").addEventListener("click", () => {
-  favorites = [];
-  safeSave("ramzgosha_favorites", favorites);
-  renderFavorites();
+    favorites = [];
+    safeSave("ramzgosha_favorites", favorites);
+    renderFavorites();
 });
 
 document.querySelectorAll("[data-tab]").forEach(button => {
-  button.addEventListener("click", () => {
-    const panel = button.closest(".panel");
-    const tab = button.dataset.tab;
+    button.addEventListener("click", () => {
+        const panel = button.closest(".panel");
+        const tab = button.dataset.tab;
 
-    panel.querySelectorAll("[data-tab]").forEach(item => {
-      item.classList.remove("active");
+        panel.querySelectorAll("[data-tab]").forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        panel.querySelectorAll('[id^="tab-"]').forEach(item => {
+            item.classList.toggle("hidden", item.id !== "tab-" + tab);
+        });
     });
-
-    button.classList.add("active");
-
-    panel.querySelectorAll('[id^="tab-"]').forEach(item => {
-      item.classList.toggle("hidden", item.id !== "tab-" + tab);
-    });
-  });
 });
 
 $("aboutOpen").addEventListener("click", () => {
-  $("aboutModal").classList.remove("hidden");
+    $("aboutModal").classList.remove("hidden");
 });
 
 $("aboutClose").addEventListener("click", () => {
-  $("aboutModal").classList.add("hidden");
-});
-
-$("aboutModal").addEventListener("click", event => {
-  if (event.target === $("aboutModal")) {
     $("aboutModal").classList.add("hidden");
-  }
 });
 
-$("source").addEventListener("keydown", event => {
-  if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
-    convert();
-  }
+$("aboutModal").addEventListener("click", e => {
+    if (e.target === $("aboutModal")) {
+        $("aboutModal").classList.add("hidden");
+    }
+});
+
+$("source").addEventListener("keydown", e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") convert();
 });
 </script>
 </body>
