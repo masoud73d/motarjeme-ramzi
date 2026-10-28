@@ -4,549 +4,525 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101b35">
+<meta name="theme-color" content="#0b1220">
 <title>رمزگشا | مترجم زبان‌ها و کدها</title>
 <style>
 :root{
- --bg:#0b1224;--surface:#111c34;--panel:#172540;--panel2:#1b2b49;
- --blue:#438cff;--blue2:#2867d9;--cyan:#52d6ed;--text:#edf4ff;
- --muted:#9cafd0;--border:#2c4164;--shadow:0 10px 30px #00000020;
-}
-body.light{
- --bg:#edf3fc;--surface:#fff;--panel:#f0f5fc;--panel2:#e5eefb;
- --text:#172641;--muted:#657795;--border:#cad7eb;--shadow:0 8px 24px #20305012;
+ --bg:#0b1220;--panel:#111c2e;--panel2:#17243a;--border:#293951;
+ --text:#e8eef8;--muted:#9aabc2;--accent:#69e0c4;--gold:#f3c969;
+ --danger:#ff8585;--input:#0b1525;--shadow:0 12px 35px #0003;
 }
 *{box-sizing:border-box}
-body{margin:0;padding:12px;background:radial-gradient(ellipse at top right,#183663 0,transparent 45%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;font-size:13px;transition:background .2s,color .2s}
-body.light{background:radial-gradient(ellipse at top right,#d6e8ff 0,transparent 45%),var(--bg)}
-button,input,textarea,select{font:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.8}
+button,textarea,select,input{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-.app{max-width:720px;margin:auto}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.brand{display:flex;align-items:center;gap:10px;min-width:0}
-.logo{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#55b8ff,#3568ff);box-shadow:0 5px 18px #367cff40;font-size:24px;font-weight:bold;color:white}
-h1{font-size:16px;margin:0 0 5px}
-.subtitle{font-size:10px;color:var(--muted)}
-.head-actions{display:flex;gap:6px}
-.about-button,.theme-button{min-height:38px;padding:7px 9px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid #42618d;border-radius:11px;background:linear-gradient(145deg,#1d3153,#14233d);color:#dbeaff;font-size:11px;white-space:nowrap}
-.theme-button{width:39px;font-size:17px}
-.info-icon{width:19px;height:19px;display:grid;place-items:center;border-radius:6px;background:#2b568d;color:white;font-weight:bold}
-.about-panel{display:none;padding:12px 14px;margin-bottom:11px;border:1px solid var(--border);border-radius:12px;background:var(--surface);line-height:2.1;overflow-wrap:anywhere}
-.about-panel.open{display:block}
-.about-panel strong{color:var(--cyan)}
-.card{padding:12px;background:linear-gradient(155deg,var(--surface),var(--bg));border:1px solid var(--border);border-radius:17px;box-shadow:var(--shadow)}
-.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px}
-.tab{min-width:0;padding:10px 4px;border:1px solid var(--border);border-radius:9px;background:var(--panel);color:var(--muted);font-size:11px}
-.tab.active{background:linear-gradient(135deg,#2867d9,#438cff);border-color:#438cff;color:white;font-weight:bold}
-.page{display:none}.page.active{display:block}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
-.field{min-width:0;padding:9px;background:var(--panel);border:1px solid var(--border);border-radius:12px}
-.field label,.field-label{display:block;margin-bottom:7px;font-size:11px;color:var(--muted)}
-select,input[type=text],input[type=number]{width:100%;min-width:0;min-height:38px;padding:8px;border:1px solid #344e77;border-radius:9px;background:var(--bg);color:var(--text)}
-select option{background:var(--surface);color:var(--text)}
-.editor{margin-top:10px;padding:10px;border:1px solid var(--border);border-radius:13px;background:var(--panel)}
-.editor-head{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:8px}
-.editor-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:bold}
-.editor-icon{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:#233e67;color:#8fc9ff;font-size:14px}
-.tag{padding:4px 8px;border:1px solid #355783;border-radius:7px;background:#1c3456;color:#9dccff;font-size:10px}
-textarea{display:block;width:100%;height:105px;min-height:75px;resize:vertical;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);outline:none;font-size:13px;line-height:1.9}
-textarea::placeholder{color:var(--muted)}
-textarea:focus{border-color:var(--blue)}
-#result{background:var(--surface)}
-.actions{display:grid;grid-template-columns:1.2fr 1fr 1fr 43px;gap:7px;margin-top:12px}
-.btn{min-width:0;min-height:39px;display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 8px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(150deg,var(--panel2),var(--panel));color:var(--text);font-size:11px}
-.btn.primary{border-color:#438cff;background:linear-gradient(135deg,#469eff,#3267ee);color:white;font-weight:bold}
-.btn.square{padding:0;font-size:19px;color:#80c9ff}
-.btn:active{transform:scale(.98)}
-.status{min-height:22px;padding-top:8px;font-size:11px;color:var(--cyan);overflow-wrap:anywhere}
-.info{margin-top:5px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--panel);color:var(--muted);font-size:10px;line-height:2;overflow-wrap:anywhere}
-.section-title{font-size:13px;margin:12px 0 8px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tool-card{padding:10px;border:1px solid var(--border);border-radius:11px;background:var(--panel);min-width:0}
-.tool-card h3{font-size:12px;margin:0 0 7px}
-.tool-card p{font-size:10px;color:var(--muted);line-height:1.8;margin:5px 0}
-.tool-card textarea{height:72px;margin:7px 0}
-.small-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.small-actions .btn{flex:1}
-.item-list{display:grid;gap:7px;margin-top:8px}
-.list-item{padding:10px;border:1px solid var(--border);border-radius:9px;background:var(--panel);overflow-wrap:anywhere}
-.list-item .item-text{white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.9}
-.list-item .item-meta{font-size:10px;color:var(--muted);margin-bottom:5px}
-.list-item .small-actions{margin-top:7px}
+button:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+header{padding:24px 16px 18px;text-align:center;background:linear-gradient(135deg,#101e34,#132d43);border-bottom:1px solid var(--border)}
+.brand{font-size:30px;font-weight:bold;color:var(--accent)}
+.subtitle{color:var(--muted);font-size:14px}
+.container{width:min(1120px,94%);margin:22px auto 40px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:18px;box-shadow:var(--shadow)}
+h2{font-size:19px;margin:0 0 12px}
+h3{font-size:15px;margin:0 0 8px;color:var(--accent)}
+.small{font-size:12px;color:var(--muted)}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+textarea,select,input{width:100%;background:var(--input);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:11px}
+textarea{min-height:130px;resize:vertical}
+select{cursor:pointer}
+option{background:var(--panel);color:var(--text)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:9px;padding:8px 13px;transition:.15s}
+button:hover{border-color:var(--accent);transform:translateY(-1px)}
+.primary{background:#164c50;border-color:#287c77;color:#d8fff7}
+.gold{color:var(--gold)}
+.danger{color:var(--danger)}
+.controls{margin-top:12px}
+.language-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.language-group{background:#0e192a;border:1px solid var(--border);border-radius:13px;padding:13px;min-width:0}
+.method-list{display:grid;gap:7px}
+.method{display:flex;align-items:center;gap:8px;text-align:right;width:100%;padding:9px 10px;background:#142239}
+.method.active{border-color:var(--accent);background:#173b45;color:#dffff8}
+.method .symbol{width:27px;text-align:center;font-size:17px;flex-shrink:0}
+.method .method-text{min-width:0}
+.method .method-name{font-size:13px;font-weight:bold}
+.method .method-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.status{padding:8px 11px;background:#0e192a;border:1px solid var(--border);border-radius:9px;color:var(--muted);font-size:12px;margin-top:10px;min-height:42px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab.active{border-color:var(--accent);color:var(--accent)}
 .hidden{display:none!important}
-footer{text-align:center;padding:13px 0 3px;color:var(--muted);font-size:10px}
-@media(max-width:390px){
- body{padding:7px}.card{padding:8px}.tabs{gap:4px}.tab{font-size:10px}
- .about-button{padding:6px;font-size:10px}.actions{grid-template-columns:1.15fr 1fr 1fr 35px;gap:4px}
- .btn{padding:6px 4px;font-size:10px}.grid2{grid-template-columns:1fr}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:14px}
+.about-btn{position:fixed;bottom:14px;left:14px;z-index:5;font-size:12px;background:#162740;box-shadow:var(--shadow)}
+.modal-backdrop{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:10}
+.modal{width:min(420px,100%);background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.history-item{padding:10px;border:1px solid var(--border);border-radius:10px;margin-top:8px;overflow-wrap:anywhere}
+.history-item p{margin:4px 0}
+@media(max-width:760px){
+ .language-columns{grid-template-columns:1fr}
+ .language-group{padding:12px}
+ .grid{grid-template-columns:1fr}
+ .brand{font-size:25px}
+ .panel{padding:13px}
+ textarea{min-height:115px}
 }
 </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
- <div class="brand">
-  <div class="logo">ر</div>
-  <div><h1>رمزگشا</h1><div class="subtitle">مترجم زبان‌ها، خط‌ها و کدها</div></div>
- </div>
- <div class="head-actions">
-  <button class="theme-button" id="themeBtn" title="تغییر پوسته" aria-label="تغییر پوسته">☼</button>
-  <button class="about-button" id="aboutBtn" aria-expanded="false"><span class="info-icon">i</span><span>درباره من</span></button>
- </div>
+<header>
+ <div class="brand">🔐 رمزگشا</div>
+ <div class="subtitle">مترجم زبان‌ها و کدها</div>
 </header>
 
-<section class="about-panel" id="aboutPanel">
- <strong>درباره من</strong><br>
- Developer: Masoud delavar<br>
- Email: masoud0098d@gmail.com
-</section>
-
-<main class="card">
-<nav class="tabs" aria-label="بخش‌های برنامه">
- <button class="tab active" data-page="translator">🔤 مترجم</button>
- <button class="tab" data-page="tools">🧰 ابزارها</button>
- <button class="tab" data-page="saved">★ ذخیره‌ها</button>
-</nav>
-
-<section class="page active" id="page-translator">
- <div class="options">
-  <div class="field">
-   <label for="language">روش تبدیل</label>
-   <select id="language">
-    <optgroup label="زبان‌های رمزی فارسی">
-     <option value="motarbi">مطربی</option>
-     <option value="soski">سوسکی</option>
-     <option value="sidi">سیدی</option>
-     <option value="zargari">زرگری</option>
-     <option value="lami">لامی (آزمایشی)</option>
-    </optgroup>
-    <optgroup label="خط و کد">
-     <option value="morse">کد مورس بین‌المللی</option>
-     <option value="braille">بریل فارسی</option>
-     <option value="url">کدگذاری URL</option>
-     <option value="binary">باینری UTF-8</option>
-     <option value="hex">هگزادسیمال UTF-8</option>
-     <option value="base64">Base64</option>
-    </optgroup>
-    <optgroup label="رمزهای کلاسیک">
-     <option value="caesar">رمز سزار</option>
-     <option value="mirror">آینه‌ای (برعکس متن)</option>
-     <option value="custom">رمز شخصی</option>
-    </optgroup>
-   </select>
+<main class="container">
+ <section class="panel">
+  <h2>انتخاب روش تبدیل</h2>
+  <p class="small">روش موردنظرت رو از یکی از سه دسته زیر انتخاب کن.</p>
+  <div class="language-columns">
+   <section class="language-group">
+    <h3>🗣️ زبان‌های رمزی ایرانی</h3>
+    <div class="method-list" id="secretMethods"></div>
+   </section>
+   <section class="language-group">
+    <h3>🔣 خط و کد</h3>
+    <div class="method-list" id="codeMethods"></div>
+   </section>
+   <section class="language-group">
+    <h3>🧩 رمزهای کلاسیک و ابزارها</h3>
+    <div class="method-list" id="classicMethods"></div>
+   </section>
   </div>
-  <div class="field">
-   <label for="direction">جهت تبدیل</label>
-   <select id="direction">
-    <option value="encode">متن اصلی ← کد</option>
-    <option value="decode">کد ← متن اصلی</option>
-   </select>
+ </section>
+
+ <section class="panel">
+  <h2>مترجم</h2>
+  <div class="grid">
+   <div class="field">
+    <label for="direction">جهت تبدیل</label>
+    <select id="direction">
+     <option value="encode">متن عادی ← تبدیل به رمز</option>
+     <option value="decode">رمز ← تبدیل به متن عادی</option>
+    </select>
+   </div>
+   <div class="field">
+    <label for="selectedMethod">روش انتخاب‌شده</label>
+    <select id="selectedMethod"></select>
+   </div>
   </div>
- </div>
-
- <div class="field" id="keyField" style="display:none;margin-bottom:10px">
-  <label for="key">کلید عددی رمز سزار</label>
-  <input id="key" type="number" value="3" min="-1000" max="1000">
- </div>
-
- <div class="editor">
-  <div class="editor-head"><div class="editor-title"><span class="editor-icon">✎</span><span id="sourceTitle">متن ورودی</span></div><span class="tag">ورودی</span></div>
-  <textarea id="source" placeholder="متنت رو اینجا بنویس..." spellcheck="false"></textarea>
- </div>
- <div class="editor">
-  <div class="editor-head"><div class="editor-title"><span class="editor-icon">✧</span><span id="resultTitle">نتیجه تبدیل</span></div><span class="tag">خروجی</span></div>
-  <textarea id="result" placeholder="نتیجه اینجا نمایش داده می‌شه..." readonly spellcheck="false"></textarea>
- </div>
- <div class="actions">
-  <button class="btn primary" id="translateBtn">⇄ تبدیل</button>
-  <button class="btn" id="copyBtn">▣ کپی</button>
-  <button class="btn" id="clearBtn">⌫ پاک‌کردن</button>
-  <button class="btn square" id="swapBtn" title="جابه‌جایی جهت" aria-label="جابه‌جایی جهت">⇆</button>
- </div>
- <div class="small-actions">
-  <button class="btn" id="sampleBtn">متن نمونه</button>
-  <button class="btn" id="favoriteBtn">☆ ذخیره در علاقه‌مندی‌ها</button>
-  <button class="btn" id="speakBtn">🔊 خواندن خروجی</button>
-  <button class="btn" id="listenBtn">🎙️ گفتار به متن</button>
- </div>
- <div class="status" id="status" aria-live="polite"></div>
- <div class="info" id="ruleInfo"></div>
-</section>
-
-<section class="page" id="page-tools">
- <h2 class="section-title">تشخیص احتمالی نوع کد</h2>
- <div class="editor">
-  <textarea id="detectInput" placeholder="متن ناشناخته رو وارد کن..."></textarea>
-  <button class="btn primary" id="detectBtn" style="width:100%;margin-top:8px">🔎 بررسی متن</button>
-  <div class="status" id="detectStatus"></div>
-  <div id="detectResults" class="item-list"></div>
- </div>
-
- <h2 class="section-title">تبدیل زنجیره‌ای</h2>
- <div class="info">متن رو با روش اول تبدیل کن و خروجی رو به روش دوم بده. هر دو مرحله با یک کلیک اجرا می‌شن.</div>
- <div class="options" style="margin-top:9px">
-  <div class="field"><label for="chain1">مرحلهٔ اول</label><select id="chain1"></select></div>
-  <div class="field"><label for="chain2">مرحلهٔ دوم</label><select id="chain2"></select></div>
- </div>
- <div class="editor">
-  <textarea id="chainInput" placeholder="متن شروع زنجیره..."></textarea>
-  <button class="btn primary" id="chainBtn" style="width:100%;margin-top:8px">اجرای دو مرحله</button>
-  <textarea id="chainOutput" placeholder="خروجی نهایی..." readonly style="margin-top:8px"></textarea>
-  <div class="status" id="chainStatus"></div>
- </div>
-
- <h2 class="section-title">مقایسهٔ چند روش</h2>
- <div class="editor">
-  <textarea id="compareInput" placeholder="متن برای مقایسه..."></textarea>
-  <button class="btn primary" id="compareBtn" style="width:100%;margin-top:8px">مقایسهٔ روش‌ها</button>
-  <div id="compareResults" class="item-list"></div>
- </div>
-
- <h2 class="section-title">رمز شخصی‌ساز</h2>
- <div class="info">هر سطر یک جفت حرف و نماد است؛ دو بخش را با علامت مساوی جدا کن. نمونه: ا=★ . برای بازگشت متن باید هر نماد یکتا باشد.</div>
- <div class="editor">
-  <label class="field-label" for="customMap">جدول رمز شخصی</label>
-  <textarea id="customMap" placeholder="ا=★&#10;ب=◆&#10;پ=●&#10;ت=▲"></textarea>
-  <div class="small-actions">
-   <button class="btn primary" id="saveMapBtn">ذخیره جدول</button>
-   <button class="btn" id="loadMapBtn">بارگذاری جدول</button>
+  <div class="field" style="margin-top:14px">
+   <label for="source">متن ورودی</label>
+   <textarea id="source" placeholder="متن یا کدی که می‌خواهی تبدیل کنی اینجا بنویس..."></textarea>
   </div>
-  <div class="status" id="mapStatus"></div>
- </div>
+  <div class="row controls">
+   <button class="primary" id="convertBtn">تبدیل کن</button>
+   <button id="swapBtn">جابجایی جهت</button>
+   <button id="sampleBtn">نمونه متن</button>
+   <button id="clearBtn">پاک کردن</button>
+   <button id="speakBtn">🔊 خواندن متن</button>
+  </div>
+  <div class="field" style="margin-top:16px">
+   <label for="result">نتیجه</label>
+   <textarea id="result" placeholder="نتیجه تبدیل اینجا نمایش داده می‌شود..." readonly></textarea>
+  </div>
+  <div class="result-actions">
+   <button class="primary" id="copyBtn">کپی نتیجه</button>
+   <button id="favoriteBtn">☆ افزودن به علاقه‌مندی‌ها</button>
+  </div>
+  <div class="status" id="status" aria-live="polite">یک روش انتخاب کن و متن رو وارد کن.</div>
+ </section>
 
- <h2 class="section-title">راهنمای ابزارها</h2>
- <div class="info">
-  <b>URL Encoding:</b> برای نمایش امن نویسه‌ها در آدرس‌ها؛ در پارامترهای فرم، فاصله ممکن است با + نشان داده شود.<br>
-  <b>Base64، باینری و هگزادسیمال:</b> کدگذاری داده‌اند و به‌تنهایی رمزنگاری امنیتی نیستند.<br>
-  <b>مورس:</b> استاندارد بین‌المللی برای حروف لاتین و اعداد؛ فارسی به آوانویسی لاتین تبدیل می‌شود و رمزگشایی به لاتین برمی‌گردد.<br>
-  <b>بریل فارسی:</b> تبدیل بر پایهٔ جدول حروف؛ برخی نویسه‌ها ممکن است در جدول‌های مختلف تفاوت داشته باشند.<br>
-  <b>تشخیص خودکار:</b> نتیجه احتمالی است، نه تضمینی؛ متن‌های کوتاه ممکن است با چند روش سازگار باشند.
- </div>
-</section>
+ <section class="panel">
+  <h2>🧰 ابزارهای کمکی</h2>
+  <div class="tabs">
+   <button class="tab active" data-tab="detect">تشخیص احتمالی کد</button>
+   <button class="tab" data-tab="chain">تبدیل دومرحله‌ای</button>
+   <button class="tab" data-tab="compare">مقایسه روش‌ها</button>
+  </div>
+  <div id="tab-detect">
+   <p class="small">این ابزار با توجه به شکل متن، چند احتمال را پیشنهاد می‌دهد؛ تشخیص آن قطعی نیست.</p>
+   <button class="primary" id="detectBtn">بررسی متن ورودی</button>
+   <div id="detectResult" class="status">هنوز متنی بررسی نشده است.</div>
+  </div>
+  <div id="tab-chain" class="hidden">
+   <div class="grid">
+    <div><label for="chainFirst">مرحله اول</label><select id="chainFirst"></select></div>
+    <div><label for="chainSecond">مرحله دوم</label><select id="chainSecond"></select></div>
+   </div>
+   <div class="row controls">
+    <button class="primary" id="chainBtn">اجرای تبدیل دومرحله‌ای</button>
+    <select id="chainDirection" style="width:auto;flex:1">
+     <option value="encode">تبدیل دو مرحله‌ای</option>
+     <option value="decode">بازگشایی دو مرحله‌ای</option>
+    </select>
+   </div>
+   <div class="status" id="chainResult">نتیجه در این قسمت نمایش داده می‌شود.</div>
+  </div>
+  <div id="tab-compare" class="hidden">
+   <p class="small">متن ورودی رو با چند روش تبدیل می‌کنه تا بتونی نتیجه‌ها رو مقایسه کنی.</p>
+   <button class="primary" id="compareBtn">مقایسه روش‌ها</button>
+   <div id="compareResult"></div>
+  </div>
+ </section>
 
-<section class="page" id="page-saved">
- <h2 class="section-title">تاریخچهٔ تبدیل‌ها</h2>
- <div class="small-actions"><button class="btn" id="refreshHistory">به‌روزرسانی</button><button class="btn" id="clearHistory">پاک‌کردن تاریخچه</button></div>
- <div id="historyList" class="item-list"></div>
- <h2 class="section-title">علاقه‌مندی‌ها</h2>
- <div class="info">ذخیره‌ها روی همین مرورگر نگهداری می‌شن. پاک‌کردن داده‌های مرورگر ممکنه اون‌ها رو حذف کنه.</div>
- <div id="favoritesList" class="item-list"></div>
-</section>
+ <section class="panel">
+  <h2>⭐ علاقه‌مندی‌ها و سابقه</h2>
+  <div class="tabs">
+   <button class="tab active" data-tab="history">سابقه تبدیل‌ها</button>
+   <button class="tab" data-tab="favorites">علاقه‌مندی‌ها</button>
+  </div>
+  <div id="tab-history"><div id="historyList" class="small">هنوز سابقه‌ای ثبت نشده.</div></div>
+  <div id="tab-favorites" class="hidden"><div id="favoriteList" class="small">هنوز موردی ذخیره نشده.</div></div>
+  <div class="row controls">
+   <button id="clearHistoryBtn" class="danger">پاک کردن سابقه</button>
+   <button id="clearFavoritesBtn" class="danger">پاک کردن علاقه‌مندی‌ها</button>
+  </div>
+ </section>
+
+ <footer>رمزگشا | مترجم زبان‌ها و کدها</footer>
 </main>
-<footer>رمزگشا | مترجم زبان‌ها و کدها</footer>
+
+<button class="about-btn" id="aboutOpen">درباره من</button>
+<div class="modal-backdrop hidden" id="aboutModal">
+ <div class="modal">
+  <div class="modal-head"><h2>درباره من</h2><button id="aboutClose">✕</button></div>
+  <p>Developer: Masoud delavar</p>
+  <p>Email: masoud0098d@gmail.com</p>
+ </div>
 </div>
 
 <script>
 "use strict";
-const $=id=>document.getElementById(id);
-const source=$("source"),result=$("result"),status=$("status");
-const language=$("language"),direction=$("direction");
-const names={
- motarbi:"مطربی",soski:"سوسکی",sidi:"سیدی",zargari:"زرگری",lami:"لامی",
- morse:"مورس",braille:"بریل فارسی",url:"URL Encoding",binary:"باینری",
- hex:"هگزادسیمال",base64:"Base64",caesar:"رمز سزار",mirror:"رمز آینه‌ای",custom:"رمز شخصی"
-};
-const samples={
- motarbi:"سلام",soski:"سلام دنیا",sidi:"کتاب",zargari:"سلام دوست خوبی",
- lami:"سلام دنیا",morse:"Hello World 123",braille:"سلام دنیا",url:"سلام خط و نقطه",
- binary:"سلام دنیا",hex:"سلام",base64:"Hello world",caesar:"HELLO WORLD",
- mirror:"سلام دنیا",custom:"اب"
-};
-const vowels=new Set(["ا","آ","أ","إ","و","ؤ","ی","ئ","ع"]);
-function motarbiEncode(w){if(!w)return w;let f=w[0],r=w.slice(1);return vowels.has(f)?"ش"+r+"لی":"ا"+r+f+"ا"}
-const motarbiMap={"ششقلی":"عشق","شحمدلی":"احمد","شحتراملی":"احترام","ایکشا":"شیک","ایانشا":"شایان","اسعودما":"مسعود"};
-function motarbiDecode(w){return motarbiMap[w]||w}
-function soskiEncode(w){return w?w[0]+"سک"+w.slice(1):w}
-function soskiDecode(w){return w.replace(/^([\u0600-\u06FF])سک/,"$1")}
-function sidiEncode(w){if(!w)return w;let f=w[0],r=w.slice(1);return ["س","ث","ص"].includes(f)?"ب"+r+"سیدی":"س"+r+f+"یدی"}
-const sidiMap={"ستابکیدی":"کتاب","ساران‌بیدی":"باران","بعیدسیدی":"سعید"};
-function sidiDecode(w){return sidiMap[w]||w}
-function norm(w){return w.normalize("NFC").replace(/[\u064B-\u065F\u0670]/g,"").replace(/ي/g,"ی").replace(/ك/g,"ک")}
-const zExamples={"سلام":"سَزَلازام","دوست":"دوزوسزت","عزیز":"عزیز","خوبی":"خوزبیز","چه":"چِزِه","خبر":"خَزَبَر","چه‌خبر":"چِزِه خَزَبَر","کتابخانه":"کِزِتاب‌خازانِه","کتاب‌خانه":"کِزِتاب‌خازانِه","شلوغ":"شُزُلوغ","بود":"بوزود"};
-const zReverse={};
-for(const [a,b] of Object.entries(zExamples)){if(!(norm(b) in zReverse))zReverse[norm(b)]=a}
-function zEncode(w){let n=norm(w);if(n in zExamples)return zExamples[n];if(n.includes("ز"))return w;let o="";for(const c of w){o+=c;if("اآوی".includes(c))o+="ز"+c}return o}
-function zDecode(w){let n=norm(w);return n in zReverse?zReverse[n]:w.replace(/([اآوی])ز\1/g,"$1")}
-function lEncode(w){let o="";for(const c of w){o+=c;if("اآوی".includes(c))o+="ل"+c}return o}
-function lDecode(w){return w.replace(/([اآوی])ل\1/g,"$1")}
 
-const morse={
- A:".-",B:"-...",C:"-.-.",D:"-..",E:".",F:"..-.",G:"--.",H:"....",I:"..",J:".---",K:"-.-",L:".-..",M:"--",N:"-.",O:"---",P:".--.",Q:"--.-",R:".-.",S:"...",T:"-",U:"..-",V:"...-",W:".--",X:"-..-",Y:"-.--",Z:"--..",
- "0":"-----","1":".----","2":"..---","3":"...--","4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.",
- ".":".-.-.-",",":"--..--","?":"..--..","!":"-.-.--","'":".----.","-":"-....-","/":"-..-.","(":"-.--.",")":"-.--.-",":":"---...",";":"-.-.-.","=":"-...-","+":".-.-.","@":".--.-.","&":".-...","_":"..--.-",'"':".-..-."
-};
-const morseReverse=Object.fromEntries(Object.entries(morse).map(([k,v])=>[v,k]));
-const translit={
- "ا":"a","آ":"aa","ب":"b","پ":"p","ت":"t","ث":"s","ج":"j","چ":"ch","ح":"h","خ":"kh","د":"d","ذ":"z","ر":"r","ز":"z","ژ":"zh","س":"s","ش":"sh","ص":"s","ض":"z","ط":"t","ظ":"z","ع":"a","غ":"gh","ف":"f","ق":"q","ک":"k","گ":"g","ل":"l","م":"m","ن":"n","و":"v","ه":"h","ی":"y","ء":""
-};
-function persianToLatin(t){return [...t].map(c=>translit[c]??c).join("")}
-function morseEncode(t){
- t=persianToLatin(t).toUpperCase();
- return t.split(/(\s+)/).map(part=>/^\s+$/.test(part)?"/": [...part].map(c=>morse[c]||c).join(" ")).join(" ").replace(/\s*\/\s*/g," / ").replace(/ {2,}/g," ").trim()
+const $ = id => document.getElementById(id);
+const methods = [
+ {id:"mot",name:"مطربی",desc:"زبان رمزی ایرانی",group:"secret",symbol:"🎭"},
+ {id:"sos",name:"سوسکی",desc:"روش رمزی سرگرمی",group:"secret",symbol:"🐞"},
+ {id:"sid",name:"سیدی",desc:"روش رمزی ساده",group:"secret",symbol:"🗝️"},
+ {id:"zar",name:"زرگری",desc:"افزودن بخش‌های رمزی",group:"secret",symbol:"✨"},
+ {id:"lam",name:"لامی",desc:"روش آزمایشی",group:"secret",symbol:"🔤"},
+ {id:"morse",name:"مورس",desc:"نقطه و خط",group:"code",symbol:"·−"},
+ {id:"braille",name:"بریل فارسی",desc:"نمایش نوشتاری بریل",group:"code",symbol:"⠿"},
+ {id:"url",name:"URL Encoding",desc:"کدگذاری متن برای نشانی",group:"code",symbol:"🌐"},
+ {id:"binary",name:"باینری UTF-8",desc:"نمایش بایت‌ها به صورت صفر و یک",group:"code",symbol:"010"},
+ {id:"hex",name:"هگزادسیمال UTF-8",desc:"نمایش بایت‌ها در مبنای ۱۶",group:"code",symbol:"0x"},
+ {id:"base64",name:"Base64",desc:"کدگذاری متنی",group:"code",symbol:"64"},
+ {id:"caesar",name:"سزار",desc:"جابه‌جایی حروف لاتین",group:"classic",symbol:"🔁"},
+ {id:"reverse",name:"برعکس‌نویسی",desc:"وارونه کردن ترتیب متن",group:"classic",symbol:"↔️"}
+];
+let selected = "mot";
+let history = safeLoad("ramzgosha_history",[]);
+let favorites = safeLoad("ramzgosha_favorites",[]);
+
+function safeLoad(key,fallback){
+ try{const v=JSON.parse(localStorage.getItem(key));return Array.isArray(v)?v:fallback}catch{return fallback}
 }
-function morseDecode(t){
- return t.trim().split(/\s*\/\s*/).map(word=>word.trim().split(/\s+/).map(code=>morseReverse[code]||code).join("")).join(" ")
+function safeSave(key,value){
+ try{localStorage.setItem(key,JSON.stringify(value))}catch{}
 }
-const brailleDots={
- "ء":"3","آ":"345","أ":"34","ؤ":"1256","إ":"34","ئ":"13456","ا":"1","ب":"12","پ":"1234","ة":"16","ت":"2345","ث":"1456","ج":"245","چ":"14","ح":"156","خ":"1346","د":"145","ذ":"2346","ر":"1235","ز":"1356","ژ":"346","س":"234","ش":"146","ص":"12346","ض":"1246","ط":"23456","ظ":"123456","ع":"12356","غ":"126","ف":"124","ق":"12345","ک":"13","گ":"1245","ل":"123","م":"134","ن":"1345","و":"2456","ه":"125","ی":"24","ى":"135",
- "،":"2","؛":"23","؟":"236",".":"256",",":"2","!":"235","-":"36",":":"25",";":"23"
-};
-function dotsToBraille(dots){
- let n=0;for(const d of String(dots))n|=1<<(Number(d)-1);
- return String.fromCodePoint(0x2800+n)
+function populateMethods(){
+ const groups={secret:$("secretMethods"),code:$("codeMethods"),classic:$("classicMethods")};
+ methods.forEach(m=>{
+  const b=document.createElement("button");
+  b.type="button";b.className="method";b.dataset.method=m.id;
+  b.innerHTML=`<span class="symbol">${m.symbol}</span><span class="method-text"><span class="method-name">${m.name}</span><br><span class="method-desc">${m.desc}</span></span>`;
+  b.addEventListener("click",()=>chooseMethod(m.id));
+  groups[m.group].appendChild(b);
+  const o=document.createElement("option");o.value=m.id;o.textContent=m.name;$("selectedMethod").appendChild(o);
+ });
+ ["chainFirst","chainSecond"].forEach(id=>{
+  methods.forEach(m=>{const o=document.createElement("option");o.value=m.id;o.textContent=m.name;$(id).appendChild(o)});
+ });
+ $("chainFirst").value="morse";$("chainSecond").value="base64";
 }
-const brailleMap={};
-for(const [c,d] of Object.entries(brailleDots)){brailleMap[c]=dotsToBraille(d)}
-const brailleReverse={};
-for(const [c,b] of Object.entries(brailleMap)){if(!(b in brailleReverse))brailleReverse[b]=c}
-function brailleEncode(t){return [...t.normalize("NFC")].map(c=>{let key=c.replace(/ي/g,"ی").replace(/ك/g,"ک");return brailleMap[key]|| (/\s/.test(c)?" ":c)}).join("")}
-function brailleDecode(t){return [...t].map(c=>brailleReverse[c]||c).join("")}
-function utf8Binary(t){return [...new TextEncoder().encode(t)].map(b=>b.toString(2).padStart(8,"0")).join(" ")}
-function binaryUtf8(t){
- let compact=t.trim().replace(/[\s,]+/g,"");
- if(!compact)return "";
- if(!/^[01]+$/.test(compact)||compact.length%8)throw Error("باینری باید از گروه‌های ۸ بیتی صفر و یک تشکیل شده باشه.");
- let bytes=[];for(let i=0;i<compact.length;i+=8)bytes.push(parseInt(compact.slice(i,i+8),2));
- return new TextDecoder("utf-8",{fatal:true}).decode(new Uint8Array(bytes))
+function chooseMethod(id){
+ selected=id;$("selectedMethod").value=id;
+ document.querySelectorAll(".method").forEach(b=>b.classList.toggle("active",b.dataset.method===id));
+ setStatus("روش انتخاب شد: "+methods.find(m=>m.id===id).name);
 }
-function utf8Hex(t){return [...new TextEncoder().encode(t)].map(b=>b.toString(16).padStart(2,"0")).join(" ")}
-function hexUtf8(t){
- let clean=t.trim().replace(/0x/gi,"").replace(/[\s,:-]+/g,"");
- if(!clean)return "";
- if(!/^[0-9a-f]+$/i.test(clean)||clean.length%2)throw Error("هگزادسیمال باید شامل جفت‌های کامل ارقام 0 تا 9 و حروف A تا F باشه.");
- let bytes=[];for(let i=0;i<clean.length;i+=2)bytes.push(parseInt(clean.slice(i,i+2),16));
- return new TextDecoder("utf-8",{fatal:true}).decode(new Uint8Array(bytes))
-}
-function toBase64(t){const bytes=new TextEncoder().encode(t);let binary="";for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary)}
-function fromBase64(t){
- const binary=atob(t.replace(/\s/g,""));const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
- return new TextDecoder("utf-8",{fatal:true}).decode(bytes)
-}
-function urlEncode(t){return encodeURIComponent(t).replace(/[!'()*]/g,c=>"%"+c.charCodeAt(0).toString(16).toUpperCase())}
-function urlDecode(t){
- try{return decodeURIComponent(t.replace(/\+/g," "))}
- catch(e){throw Error("کد URL کامل یا معتبر نیست.")}
-}
-const faAlphabet=[..."اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی"];
-const enAlphabet=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-function caesar(t,shift){
- shift=((shift%26)+26)%26;
- return [...t].map(c=>{
-  let upper=c.toUpperCase(),i=enAlphabet.indexOf(upper);
-  if(i<0)return c;
-  let out=enAlphabet[(i+shift)%26];return c===upper?out:out.toLowerCase()
- }).join("")
-}
-function mirror(t){return [...t].reverse().join("")}
-function customTable(){
- const raw=$("customMap").value.trim()||localStorage.getItem("rg_custom_map")||"";
- const map={};
- for(const line of raw.split(/\n/)){
-  if(!line.trim())continue;
-  const i=line.indexOf("=");if(i<1)continue;
-  const a=line.slice(0,i).trim(),b=line.slice(i+1).trim();
-  if(a&&b)map[a]=b;
+function setStatus(msg){$("status").textContent=msg}
+function normalizePersian(s){return s.replace(/ي/g,"ی").replace(/ك/g,"ک")}
+function charsMap(s,map,reverse=false){
+ const entries=Object.entries(map);
+ if(reverse) entries.reverse();
+ let out="";
+ for(const ch of s){
+  const found=entries.find(([a])=>a===ch);
+  out+=found?found[1]:ch;
  }
- return map
+ return out;
 }
-function customEncode(t){
- const map=customTable();if(!Object.keys(map).length)throw Error("اول جدول رمز شخصی رو در بخش ابزارها تعریف کن.");
- const keys=Object.keys(map).sort((a,b)=>b.length-a.length);
- return t.split(/(\s+)/).map(part=>/^\s+$/.test(part)?part:keys.reduce((s,k)=>s.split(k).join(map[k]),part)).join("")
+
+/* زبان‌های رمزی سرگرمی؛ برای متن‌های ساده و قابل‌برگشت */
+const persianAlphabet="ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی";
+const motMap={};
+for(let i=0;i<persianAlphabet.length;i++){
+ const ch=persianAlphabet[i];
+ motMap[ch]=ch+"و";
 }
-function customDecode(t){
- const map=customTable();if(!Object.keys(map).length)throw Error("اول جدول رمز شخصی رو در بخش ابزارها تعریف کن.");
- const reverse={};
- for(const [a,b] of Object.entries(map)){if(b in reverse)throw Error("نمادهای رمز شخصی باید یکتا باشن.");reverse[b]=a}
- const keys=Object.keys(reverse).sort((a,b)=>b.length-a.length);
- let out="",i=0;
- while(i<t.length){const k=keys.find(k=>t.startsWith(k,i));if(k){out+=reverse[k];i+=k.length}else{out+=t[i];i++}}
- return out
+const sosMap={};
+for(let i=0;i<persianAlphabet.length;i++){
+ const ch=persianAlphabet[i];
+ sosMap[ch]=ch+"س";
 }
-const rules={
- motarbi:{encode:motarbiEncode,decode:motarbiDecode,info:"مطربی: برای کلمات معمولی، حرف اول به انتها منتقل و «ا» اضافه می‌شود؛ برای شروع‌های خاص، الگوی «ش...لی» به‌کار می‌رود. رمزگشایی عمومی کامل نیست و فقط نمونه‌های ثبت‌شده دقیق برمی‌گردند."},
- soski:{encode:soskiEncode,decode:soskiDecode,info:"سوسکی: بعد از حرف اول هر کلمه «سک» قرار می‌گیرد. این قاعده در کلمات فارسی ساده قابل برگشت است."},
- sidi:{encode:sidiEncode,decode:sidiDecode,info:"سیدی: حرف اول تغییر می‌کند و پسوند «یدی» یا «سیدی» اضافه می‌شود. رمزگشایی این نسخه برای نمونه‌های ثبت‌شده دقیق است."},
- zargari:{encode:zEncode,decode:zDecode,info:"زرگری: چند نمونهٔ شناخته‌شده خروجی ثابت دارند؛ کلمات دیگر از یک الگوی عمومی تقریبی استفاده می‌کنند. در نوشتار فارسی واکه‌های کوتاه معمولاً نوشته نمی‌شوند."},
- lami:{encode:lEncode,decode:lDecode,info:"لامی آزمایشی: پس از حروف «ا، آ، و، ی» الگوی «ل» و تکرار همان حرف اضافه می‌شود."},
- morse:{encode:morseEncode,decode:morseDecode,info:"مورس بین‌المللی: حروف لاتین، اعداد و چند علامت را پشتیبانی می‌کند. فارسی ابتدا آوانویسی لاتین می‌شود؛ رمزگشایی مورس خروجی لاتین می‌دهد و لزوماً املای فارسی اصلی را بازسازی نمی‌کند."},
- braille:{encode:brailleEncode,decode:brailleDecode,info:"بریل فارسی: متن با جدول نویسه‌های بریل تبدیل می‌شود. فاصله‌ها حفظ می‌شوند؛ نویسه‌های پشتیبانی‌نشده بدون تغییر می‌مانند. این پیاده‌سازی یک تبدیل سادهٔ نویسه‌به‌نویسه است."},
- url:{encode:urlEncode,decode:urlDecode,info:"URL Encoding: نویسه‌ها به بایت‌های UTF-8 و سپس %HH تبدیل می‌شوند. در رمزگشایی، + هم به‌عنوان فاصله در نظر گرفته می‌شود؛ بنابراین برای متن‌های دارای علامت + واقعی، از %2B استفاده کن."},
- binary:{encode:utf8Binary,decode:binaryUtf8,info:"باینری UTF-8: هر بایت به ۸ رقم صفر و یک تبدیل می‌شود. برای رمزگشایی می‌توان فاصلهٔ بین گروه‌های ۸ بیتی را حذف کرد."},
- hex:{encode:utf8Hex,decode:hexUtf8,info:"هگزادسیمال UTF-8: بایت‌ها به ارقام مبنای ۱۶ تبدیل می‌شوند. رمزگشایی، فاصله‌ها و جداکننده‌های رایج را نادیده می‌گیرد."},
- base64:{encode:toBase64,decode:fromBase64,info:"Base64: نمایش متنی داده‌های باینری است؛ رمزنگاری امن محسوب نمی‌شود. خروجی UTF-8 برای متن فارسی نیز پشتیبانی می‌شود."},
- caesar:{encode:t=>caesar(t,Number($("key").value)||0),decode:t=>caesar(t,-(Number($("key").value)||0)),info:"رمز سزار: حروف لاتین را با کلید عددی جابه‌جا می‌کند. برای حروف فارسی، این نسخه تغییری ایجاد نمی‌کند."},
- mirror:{encode:mirror,decode:mirror,info:"آینه‌ای: ترتیب نویسه‌های متن را برعکس می‌کند. در رمزگشایی هم همان عملیات، متن را به ترتیب قبلی برمی‌گرداند."},
- custom:{encode:customEncode,decode:customDecode,info:"رمز شخصی: جدول نمادها را در بخش ابزارها تعریف کن. برای رمزگشایی، نمادهای جایگزین باید یکتا باشند."}
+const sidMap={};
+for(let i=0;i<persianAlphabet.length;i++){
+ const ch=persianAlphabet[i];
+ sidMap[ch]=ch+"ی";
+}
+const zarMap={};
+for(let i=0;i<persianAlphabet.length;i++){
+ const ch=persianAlphabet[i];
+ zarMap[ch]="ز"+ch;
+}
+const lamMap={};
+for(let i=0;i<persianAlphabet.length;i++){
+ const ch=persianAlphabet[i];
+ lamMap[ch]="ل"+ch;
+}
+const secretMaps={mot:motMap,sos:sosMap,sid:sidMap,zar:zarMap,lam:lamMap};
+
+function encodeSecret(text,id){
+ const map=secretMaps[id];
+ if(!map)return text;
+ let out="";
+ for(const ch of normalizePersian(text)){
+  if(ch===" "){out+=" ";continue}
+  if(map[ch])out+=map[ch];
+  else out+=ch;
+ }
+ return out;
+}
+function decodeSecret(text,id){
+ const map=secretMaps[id];
+ if(!map)return text;
+ let inverse={};
+ Object.entries(map).forEach(([a,b])=>inverse[b]=a);
+ const tokens=text.split(/(\s+)/);
+ return tokens.map(token=>{
+  if(!token.trim())return token;
+  let out="",i=0;
+  while(i<token.length){
+   let matched=false;
+   for(const [encoded,plain] of Object.entries(inverse)){
+    if(token.startsWith(encoded,i)){out+=plain;i+=encoded.length;matched=true;break}
+   }
+   if(!matched){out+=token[i];i++}
+  }
+  return out;
+ }).join("");
+}
+const morseMap={
+ a:".-",b:"-...",c:"-.-.",d:"-..",e:".",f:"..-.",g:"--.",h:"....",i:"..",j:".---",
+ k:"-.-",l:".-..",m:"--",n:"-.",o:"---",p:".--.",q:"--.-",r:".-.",s:"...",t:"-",
+ u:"..-",v:"...-",w:".--",x:"-..-",y:"-.--",z:"--..",
+ "0":"-----","1":".----","2":"..---","3":"...--","4":"....-","5":".....",
+ "6":"-....","7":"--...","8":"---..","9":"----.",
+ ".":".-.-.-",",":"--..--","?":"..--..","!":"-.-.--"
 };
-function transformText(t,fn){return t.replace(/[\u0600-\u06FF\u200c]+/g,w=>fn(w))}
-function runTransform(text,method,dir){
- const r=rules[method];if(!r)throw Error("روش تبدیل ناشناخته است.");
- if(["motarbi","soski","sidi","zargari","lami"].includes(method))return transformText(text,dir==="encode"?r.encode:r.decode);
- return (dir==="encode"?r.encode:r.decode)(text)
+const brailleMap={
+ "ا":"⠁","آ":"⠜","ب":"⠃","پ":"⠏","ت":"⠞","ث":"⠹","ج":"⠚","چ":"⠡",
+ "ح":"⠱","خ":"⠭","د":"⠙","ذ":"⠮","ر":"⠗","ز":"⠵","ژ":"⠿","س":"⠎",
+ "ش":"⠩","ص":"⠯","ض":"⠫","ط":"⠾","ظ":"⠿","ع":"⠷","غ":"⠣","ف":"⠋",
+ "ق":"⠟","ک":"⠅","گ":"⠛","ل":"⠇","م":"⠍","ن":"⠝","و":"⠺","ه":"⠓",
+ "ی":"⠊","ء":"⠄"," ":"⠀"
+};
+function reverseMap(map){const out={};for(const [k,v] of Object.entries(map))if(!(v in out))out[v]=k;return out}
+function bytesToBinary(s){return Array.from(new TextEncoder().encode(s)).map(b=>b.toString(2).padStart(8,"0")).join(" ")}
+function binaryToText(s){
+ const parts=s.trim().split(/\s+/).filter(Boolean);
+ if(!parts.length)return "";
+ if(parts.some(p=>!/^[01]{8}$/.test(p)))throw Error("باینری باید شامل گروه‌های ۸ بیتی باشد.");
+ return new TextDecoder("utf-8",{fatal:true}).decode(new Uint8Array(parts.map(p=>parseInt(p,2))));
 }
-function updateLabels(){
- const dec=direction.value==="decode";
- $("sourceTitle").textContent=dec?"متن کدگذاری‌شده":"متن اصلی";
- $("resultTitle").textContent=dec?"متن رمزگشایی‌شده":"نتیجهٔ تبدیل";
- $("keyField").style.display=language.value==="caesar"?"block":"none";
- $("ruleInfo").textContent=rules[language.value].info;
+function bytesToHex(s){return Array.from(new TextEncoder().encode(s)).map(b=>b.toString(16).padStart(2,"0")).join(" ")}
+function hexToText(s){
+ const parts=s.trim().split(/[\s,]+/).filter(Boolean);
+ if(!parts.length)return "";
+ if(parts.some(p=>!/^[0-9a-fA-F]{2}$/.test(p)))throw Error("هگز باید شامل بایت‌های دو رقمی باشد.");
+ return new TextDecoder("utf-8",{fatal:true}).decode(new Uint8Array(parts.map(p=>parseInt(p,16))));
 }
-function translate(){
- if(!source.value.trim()){result.value="";status.textContent="اول متن رو وارد کن.";return}
+function morseEncode(s){
+ return s.toLowerCase().split(/(\s+)/).map(part=>{
+  if(/^\s+$/.test(part))return "/";
+  return Array.from(part).map(ch=>morseMap[ch]||ch).join(" ");
+ }).join(" ").replace(/\s*\/\s*/g," / ").trim();
+}
+function morseDecode(s){
+ return s.trim().split(/\s*\/\s*/).map(word=>word.trim().split(/\s+/).map(code=>{
+  const ch=Object.keys(morseMap).find(k=>morseMap[k]===code);
+  return ch||code;
+ }).join("")).join(" ");
+}
+function caesar(s,shift){
+ return s.replace(/[a-z]/gi,ch=>{
+  const base=ch===ch.toUpperCase()?65:97;
+  return String.fromCharCode((ch.charCodeAt(0)-base+shift+26)%26+base);
+ });
+}
+function transform(text,id,direction){
+ if(!text)return "";
+ const enc=direction==="encode";
+ switch(id){
+  case "mot":case "sos":case "sid":case "zar":case "lam":
+   return enc?encodeSecret(text,id):decodeSecret(text,id);
+  case "morse":return enc?morseEncode(text):morseDecode(text);
+  case "braille":return enc?charsMap(text,brailleMap):charsMap(text,reverseMap(brailleMap));
+  case "url":
+   if(enc)return encodeURIComponent(text);
+   try{return decodeURIComponent(text.replace(/\+/g," "))}catch{throw Error("متن URL معتبر نیست.")}
+  case "binary":return enc?bytesToBinary(text):binaryToText(text);
+  case "hex":return enc?bytesToHex(text):hexToText(text);
+  case "base64":
+   if(enc){const bytes=new TextEncoder().encode(text);let binary="";bytes.forEach(b=>binary+=String.fromCharCode(b));return btoa(binary)}
+   try{const binary=atob(text.trim());return new TextDecoder("utf-8",{fatal:true}).decode(Uint8Array.from(binary,c=>c.charCodeAt(0)))}catch{throw Error("متن Base64 معتبر نیست.")}
+  case "caesar":return caesar(text,enc?3:-3);
+  case "reverse":return Array.from(text).reverse().join("");
+  default:return text;
+ }
+}
+function convert({quiet=false,record=true}={}){
+ const text=$("source").value;
+ if(!text){$("result").value="";if(!quiet)setStatus("اول متن ورودی رو وارد کن.");return ""}
  try{
-  result.value=runTransform(source.value,language.value,direction.value);
-  status.textContent="تبدیل انجام شد.";
-  saveHistory(source.value,result.value,language.value,direction.value)
- }catch(e){status.textContent=e.message||"خطا در تبدیل.";result.value=""}
+  const output=transform(text,$("selectedMethod").value,$("direction").value);
+  $("result").value=output;
+  if(!quiet)setStatus("تبدیل انجام شد.");
+  if(record){
+   history.unshift({method:$("selectedMethod").value,direction:$("direction").value,input:text,output,time:new Date().toLocaleString("fa-IR")});
+   history=history.slice(0,30);safeSave("ramzgosha_history",history);renderHistory();
+  }
+  return output;
+ }catch(e){
+  if(!quiet)setStatus(e.message||"تبدیل انجام نشد.");
+  return "";
+ }
 }
-language.addEventListener("change",()=>{updateLabels();if(source.value.trim())translate()});
-direction.addEventListener("change",()=>{updateLabels();if(source.value.trim())translate()});
-$("key").addEventListener("change",()=>{if(language.value==="caesar"&&source.value.trim())translate()});
-$("translateBtn").addEventListener("click",translate);
-$("copyBtn").addEventListener("click",async()=>{
- if(!result.value){status.textContent="اول متن رو تبدیل کن.";return}
- try{await navigator.clipboard.writeText(result.value);status.textContent="نتیجه کپی شد."}
- catch{result.focus();result.select();status.textContent=document.execCommand("copy")?"نتیجه کپی شد.":"متن خروجی رو انتخاب و کپی کن."}
-});
-$("clearBtn").addEventListener("click",()=>{source.value="";result.value="";status.textContent="";source.focus()});
+function renderHistory(){
+ const target=$("historyList");
+ if(!history.length){target.textContent="هنوز سابقه‌ای ثبت نشده.";return}
+ target.replaceChildren();
+ history.forEach((item,index)=>{
+  const box=document.createElement("div");box.className="history-item";
+  const title=document.createElement("strong");
+  title.textContent=(methods.find(m=>m.id===item.method)?.name||item.method)+" · "+(item.direction==="encode"?"تبدیل":"بازگشایی");
+  const p=document.createElement("p");p.textContent="ورودی: "+item.input;
+  const q=document.createElement("p");q.textContent="نتیجه: "+item.output;
+  const row=document.createElement("div");row.className="row";
+  const use=document.createElement("button");use.textContent="استفاده دوباره";
+  use.onclick=()=>{$("source").value=item.input;$("result").value=item.output;chooseMethod(item.method);$("direction").value=item.direction;window.scrollTo({top:0,behavior:"smooth"})};
+  const del=document.createElement("button");del.textContent="حذف";del.onclick=()=>{history.splice(index,1);safeSave("ramzgosha_history",history);renderHistory()};
+  row.append(use,del);box.append(title,p,q,row);target.appendChild(box);
+ });
+}
+function renderFavorites(){
+ const target=$("favoriteList");
+ if(!favorites.length){target.textContent="هنوز موردی ذخیره نشده.";return}
+ target.replaceChildren();
+ favorites.forEach((item,index)=>{
+  const box=document.createElement("div");box.className="history-item";
+  const p=document.createElement("p");p.textContent=(methods.find(m=>m.id===item.method)?.name||item.method)+" : "+item.output;
+  const row=document.createElement("div");row.className="row";
+  const use=document.createElement("button");use.textContent="بارگذاری";
+  use.onclick=()=>{$("source").value=item.input;$("result").value=item.output;chooseMethod(item.method);$("direction").value=item.direction};
+  const del=document.createElement("button");del.textContent="حذف";del.onclick=()=>{favorites.splice(index,1);safeSave("ramzgosha_favorites",favorites);renderFavorites()};
+  row.append(use,del);box.append(p,row);target.appendChild(box);
+ });
+}
+function addFavorite(){
+ if(!$("result").value){setStatus("اول یک تبدیل انجام بده.");return}
+ favorites.unshift({method:$("selectedMethod").value,direction:$("direction").value,input:$("source").value,output:$("result").value});
+ favorites=favorites.slice(0,50);safeSave("ramzgosha_favorites",favorites);renderFavorites();setStatus("به علاقه‌مندی‌ها اضافه شد.");
+}
+function detect(){
+ const s=$("source").value.trim();
+ if(!s){$("detectResult").textContent="اول متنی وارد کن.";return}
+ const guesses=[];
+ if(/^[01\s]+$/.test(s)&&s.replace(/\s/g,"").length%8===0)guesses.push("باینری UTF-8");
+ if(/^[0-9a-f\s]+$/i.test(s)&&s.replace(/\s/g,"").length%2===0)guesses.push("هگزادسیمال");
+ if(/^[.\-/\s]+$/.test(s)&&/[.-]/.test(s))guesses.push("احتمالاً مورس");
+ if(/^[A-Za-z0-9+/=\s]+$/.test(s)&&s.length%4===0)guesses.push("احتمالاً Base64");
+ if(/%[0-9a-f]{2}/i.test(s))guesses.push("URL Encoding");
+ if(/[⠁-⣿]/.test(s))guesses.push("بریل");
+ $("detectResult").textContent=guesses.length?"احتمال‌های شناسایی: "+[...new Set(guesses)].join("، "):"الگوی مشخصی پیدا نشد؛ ممکنه متن عادی یا یک زبان رمزی باشه.";
+}
+function compare(){
+ const text=$("source").value;
+ const target=$("compareResult");target.replaceChildren();
+ if(!text){target.textContent="اول متن ورودی رو وارد کن.";return}
+ methods.filter(m=>m.id!=="braille").forEach(m=>{
+  try{
+   const value=transform(text,m.id,"encode");
+   const box=document.createElement("div");box.className="history-item";
+   const title=document.createElement("strong");title.textContent=m.name;
+   const p=document.createElement("p");p.textContent=value;
+   const b=document.createElement("button");b.textContent="انتخاب این روش";
+   b.onclick=()=>{chooseMethod(m.id);$("result").value=value;$("direction").value="encode";setStatus("روش مقایسه انتخاب شد: "+m.name)};
+   box.append(title,p,b);target.appendChild(box);
+  }catch{}
+ });
+}
+function chain(){
+ const text=$("source").value;
+ if(!text){$("chainResult").textContent="اول متن ورودی رو وارد کن.";return}
+ const first=$("chainFirst").value,second=$("chainSecond").value,dir=$("chainDirection").value;
+ try{
+  let result;
+  if(dir==="encode")result=transform(transform(text,first,"encode"),second,"encode");
+  else result=transform(transform(text,second,"decode"),first,"decode");
+  $("chainResult").textContent="نتیجه: "+result;
+  $("result").value=result;
+ }catch(e){$("chainResult").textContent=e.message||"خطا در تبدیل دومرحله‌ای"}
+}
+populateMethods();
+chooseMethod(selected);
+renderHistory();renderFavorites();
+
+$("selectedMethod").addEventListener("change",e=>chooseMethod(e.target.value));
+$("convertBtn").addEventListener("click",()=>convert());
 $("swapBtn").addEventListener("click",()=>{
- const a=source.value;source.value=result.value;result.value=a;
- direction.value=direction.value==="encode"?"decode":"encode";updateLabels();
- status.textContent="جهت تبدیل عوض شد؛ برای اجرای تبدیل جدید دکمهٔ تبدیل رو بزن."
+ $("direction").value=$("direction").value==="encode"?"decode":"encode";
+ const old=$("source").value;$("source").value=$("result").value;$("result").value=old;
+ setStatus("جهت تبدیل جابه‌جا شد.");
 });
 $("sampleBtn").addEventListener("click",()=>{
- source.value=samples[language.value]||"سلام دنیا";translate();source.focus()
+ $("source").value="سلام دنیا";
+ $("result").value="";
+ setStatus("نمونه آماده است؛ حالا روی تبدیل کن بزن.");
 });
-source.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="Enter")translate()});
-source.addEventListener("input",()=>{if(!source.value.trim()){result.value="";status.textContent=""}});
-$("aboutBtn").addEventListener("click",()=>{
- const open=$("aboutPanel").classList.toggle("open");$("aboutBtn").setAttribute("aria-expanded",String(open))
+$("clearBtn").addEventListener("click",()=>{$("source").value="";$("result").value="";setStatus("متن‌ها پاک شدند.")});
+$("copyBtn").addEventListener("click",async()=>{
+ const text=$("result").value;
+ if(!text){setStatus("نتیجه‌ای برای کپی وجود نداره.");return}
+ try{await navigator.clipboard.writeText(text);setStatus("نتیجه کپی شد.")}
+ catch{$("result").focus();$("result").select();try{document.execCommand("copy");setStatus("نتیجه کپی شد.")}catch{setStatus("کپی خودکار در این مرورگر پشتیبانی نمی‌شود.")}}
 });
-$("themeBtn").addEventListener("click",()=>{
- document.body.classList.toggle("light");const light=document.body.classList.contains("light");
- $("themeBtn").textContent=light?"☾":"☼";document.querySelector('meta[name="theme-color"]').content=light?"#edf3fc":"#101b35"
-});
-document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{
- document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b===btn));
- document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+btn.dataset.page));
- if(btn.dataset.page==="saved")renderSaved()
-}));
-const store={
- get(k,fallback=[]){try{return JSON.parse(localStorage.getItem(k)||"null")??fallback}catch{return fallback}},
- set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch{return false}}
-};
-function saveHistory(input,output,method,dir){
- let h=store.get("rg_history",[]);
- h.unshift({input,output,method,dir,time:new Date().toLocaleString("fa-IR")});
- h=h.slice(0,60);store.set("rg_history",h)
-}
-function addFavorite(input,output,method,dir){
- if(!input&&!output){status.textContent="چیزی برای ذخیره وجود نداره.";return}
- let f=store.get("rg_favorites",[]);
- if(f.some(x=>x.input===input&&x.output===output&&x.method===method)){status.textContent="این مورد قبلاً ذخیره شده.";return}
- f.unshift({input,output,method,dir,time:new Date().toLocaleString("fa-IR")});
- store.set("rg_favorites",f);status.textContent="به علاقه‌مندی‌ها اضافه شد."
-}
-$("favoriteBtn").addEventListener("click",()=>addFavorite(source.value,result.value,language.value,direction.value));
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function renderList(target,items,type){
- const root=$(target);root.innerHTML="";
- if(!items.length){root.innerHTML='<div class="info">هنوز موردی ذخیره نشده.</div>';return}
- items.forEach((x,i)=>{
-  const el=document.createElement("div");el.className="list-item";
-  el.innerHTML='<div class="item-meta">'+escapeHtml(names[x.method]||x.method)+' · '+escapeHtml(x.time||"")+'</div><div class="item-text"><b>ورودی:</b> '+escapeHtml(x.input)+'<br><b>خروجی:</b> '+escapeHtml(x.output)+'</div><div class="small-actions"><button class="btn" data-action="load">بارگذاری</button><button class="btn" data-action="copy">کپی خروجی</button><button class="btn" data-action="delete">حذف</button></div>';
-  el.querySelector('[data-action="load"]').onclick=()=>{source.value=x.input;result.value=x.output;language.value=x.method;direction.value=x.dir;updateLabels();document.querySelector('[data-page="translator"]').click();status.textContent="مورد بارگذاری شد."};
-  el.querySelector('[data-action="copy"]').onclick=async()=>{try{await navigator.clipboard.writeText(x.output);status.textContent="کپی شد."}catch{status.textContent="امکان کپی خودکار نیست."}};
-  el.querySelector('[data-action="delete"]').onclick=()=>{let arr=store.get(type,[]);arr.splice(i,1);store.set(type,arr);renderSaved()};
-  root.appendChild(el)
- })
-}
-function renderSaved(){renderList("historyList",store.get("rg_history",[]),"rg_history");renderList("favoritesList",store.get("rg_favorites",[]),"rg_favorites")}
-$("refreshHistory").onclick=renderSaved;
-$("clearHistory").onclick=()=>{if(confirm("تاریخچه پاک بشه؟")){store.set("rg_history",[]);renderSaved()}};
-
-$("detectBtn").addEventListener("click",()=>{
- const t=$("detectInput").value.trim(),out=$("detectResults");out.innerHTML="";
- if(!t){$("detectStatus").textContent="اول یک متن وارد کن.";return}
- const hits=[];
- if(/^[01\s,]+$/.test(t)&&t.replace(/\D/g,"").length>=8&&t.replace(/\D/g,"").length%8===0)hits.push(["binary","الگوی باینری؛ گروه‌های ۸ بیتی"])
- if(/^(?:[0-9a-fA-F]{2}[\s,:-]*)+$/.test(t)&&/[a-fA-F]/.test(t))hits.push(["hex","احتمال هگزادسیمال"])
- if(/^[.\-/\s]+$/.test(t)&&/[.-]/.test(t))hits.push(["morse","احتمال کد مورس"])
- if(/^(?:%[0-9a-fA-F]{2}|[A-Za-z0-9_.~!*'();,/?:@&=+$#%-])+$/.test(t)&&/%[0-9a-fA-F]{2}/.test(t))hits.push(["url","الگوی Percent-Encoding در URL"])
- if(/^[A-Za-z0-9+/=\s]+$/.test(t)&&t.replace(/\s/g,"").length>=8&&t.replace(/\s/g,"").length%4===0)hits.push(["base64","احتمال Base64"])
- if(/[⠀-⣿]/.test(t))hits.push(["braille","نویسه‌های یونیکد بریل"])
- if(/سک/.test(t))hits.push(["soski","ممکن است سوسکی باشد"])
- if(/یدی|سیدی/.test(t))hits.push(["sidi","ممکن است سیدی باشد"])
- if(!hits.length){$("detectStatus").textContent="الگوی مشخصی پیدا نشد؛ این به معنی رمزگشایی‌ناپذیر بودن متن نیست.";return}
- $("detectStatus").textContent="احتمال‌های زیر با شکل متن سازگارند؛ نتیجه قطعی نیست.";
- hits.forEach(([m,desc])=>{
-  const el=document.createElement("div");el.className="list-item";
-  el.innerHTML="<b>"+escapeHtml(names[m])+"</b><div class=item-meta>"+escapeHtml(desc)+"</div><button class=btn>آزمایش این روش</button>";
-  el.querySelector("button").onclick=()=>{language.value=m;direction.value="decode";source.value=t;updateLabels();document.querySelector('[data-page="translator"]').click();translate()};
-  out.appendChild(el)
- })
-});
-function fillMethodSelect(id){
- const s=$(id);s.innerHTML="";
- Object.entries(names).forEach(([v,n])=>{const o=document.createElement("option");o.value=v;o.textContent=n;s.appendChild(o)})
-}
-fillMethodSelect("chain1");fillMethodSelect("chain2");$("chain1").value="url";$("chain2").value="base64";
-$("chainBtn").addEventListener("click",()=>{
- try{
-  const t=$("chainInput").value;
-  const first=runTransform(t,$("chain1").value,"encode");
-  const second=runTransform(first,$("chain2").value,"encode");
-  $("chainOutput").value=second;
-  $("chainStatus").textContent="مرحلهٔ اول: "+names[$("chain1").value]+"؛ مرحلهٔ دوم: "+names[$("chain2").value]
- }catch(e){$("chainStatus").textContent=e.message||"خطا در زنجیره"}
-});
-$("compareBtn").addEventListener("click",()=>{
- const t=$("compareInput").value,root=$("compareResults");root.innerHTML="";
- if(!t){root.innerHTML='<div class="info">اول متن رو وارد کن.</div>';return}
- ["url","morse","braille","binary","hex","base64","caesar","mirror"].forEach(m=>{
-  try{
-   const out=runTransform(t,m,"encode"),el=document.createElement("div");el.className="list-item";
-   el.innerHTML="<b>"+escapeHtml(names[m])+"</b><div class=item-text>"+escapeHtml(out)+"</div><div class=small-actions><button class=btn>کپی</button><button class=btn>استفاده در مترجم</button></div>";
-   el.querySelectorAll("button")[0].onclick=async()=>{try{await navigator.clipboard.writeText(out)}catch{}};
-   el.querySelectorAll("button")[1].onclick=()=>{language.value=m;direction.value="encode";source.value=t;result.value=out;updateLabels();document.querySelector('[data-page="translator"]').click()};
-   root.appendChild(el)
-  }catch(e){}
- })
-});
-$("saveMapBtn").addEventListener("click",()=>{
- const raw=$("customMap").value.trim();
- if(!raw){$("mapStatus").textContent="جدول خالیه.";return}
- const map={};
- for(const line of raw.split(/\n/)){
-  if(!line.trim())continue;
-  const i=line.indexOf("=");if(i<1){$("mapStatus").textContent="فرمت هر سطر باید حرف=نماد باشه.";return}
-  const a=line.slice(0,i).trim(),b=line.slice(i+1).trim();
-  if(!a||!b){$("mapStatus").textContent="حرف و نماد نباید خالی باشن.";return}
-  map[a]=b
- }
- const vals=Object.values(map);
- if(new Set(vals).size!==vals.length){$("mapStatus").textContent="نمادهای جایگزین باید یکتا باشن.";return}
- localStorage.setItem("rg_custom_map",raw);$("mapStatus").textContent="جدول ذخیره شد."
-});
-$("loadMapBtn").addEventListener("click",()=>{$("customMap").value=localStorage.getItem("rg_custom_map")||"ا=★\nب=◆\nپ=●\nت=▲";$("mapStatus").textContent="جدول بارگذاری شد."});
+$("favoriteBtn").addEventListener("click",addFavorite);
+$("detectBtn").addEventListener("click",detect);
+$("compareBtn").addEventListener("click",compare);
+$("chainBtn").addEventListener("click",chain);
 $("speakBtn").addEventListener("click",()=>{
- if(!result.value){status.textContent="خروجی‌ای برای خواندن وجود نداره.";return}
- if(!("speechSynthesis" in window)){status.textContent="خواندن متن در این مرورگر پشتیبانی نمی‌شه.";return}
- speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(result.value);u.lang=/[\u0600-\u06FF]/.test(result.value)?"fa-IR":"en-US";speechSynthesis.speak(u)
+ const text=$("result").value||$("source").value;
+ if(!text){setStatus("متنی برای خواندن وجود نداره.");return}
+ if(!("speechSynthesis" in window)){setStatus("خواندن صوتی در این مرورگر پشتیبانی نمی‌شود.");return}
+ speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang="fa-IR";speechSynthesis.speak(utterance);
 });
-$("listenBtn").addEventListener("click",()=>{
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SR){status.textContent="تشخیص گفتار در این مرورگر پشتیبانی نمی‌شه؛ ممکنه مرورگر دیگری لازم باشه.";return}
- const rec=new SR();rec.lang="fa-IR";rec.interimResults=false;rec.maxAlternatives=1;
- status.textContent="گوش می‌دم؛ صحبت کن...";
- rec.onresult=e=>{source.value=e.results[0][0].transcript;status.textContent="گفتار به متن تبدیل شد.";translate()};
- rec.onerror=e=>{status.textContent="خطا در تشخیص گفتار: "+e.error};
- rec.onend=()=>{};rec.start()
+$("clearHistoryBtn").addEventListener("click",()=>{history=[];safeSave("ramzgosha_history",history);renderHistory()});
+$("clearFavoritesBtn").addEventListener("click",()=>{favorites=[];safeSave("ramzgosha_favorites",favorites);renderFavorites()});
+document.querySelectorAll("[data-tab]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  const parent=button.closest(".panel");
+  parent.querySelectorAll("[data-tab]").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  const tab=button.dataset.tab;
+  parent.querySelectorAll('[id^="tab-"]').forEach(el=>el.classList.toggle("hidden",el.id!=="tab-"+tab));
+ });
 });
-const savedMap=localStorage.getItem("rg_custom_map");if(savedMap)$("customMap").value=savedMap;
-updateLabels();
+$("aboutOpen").addEventListener("click",()=>$("aboutModal").classList.remove("hidden"));
+$("aboutClose").addEventListener("click",()=>$("aboutModal").classList.add("hidden"));
+$("aboutModal").addEventListener("click",e=>{if(e.target===$("aboutModal"))$("aboutModal").classList.add("hidden")});
+$("source").addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="Enter")convert()});
 </script>
 </body>
 </html>
