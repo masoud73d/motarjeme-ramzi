@@ -444,8 +444,41 @@ function decodeZargari(text) {
     return out;
 }
 
+/* زبان سوسکی: حرف اول هر واژه جایگزین می‌شود و در پایان «به + حرف اول + یدی» می‌آید. */
+function encodeSosWord(word) {
+    const chars = Array.from(word);
+    if (!chars.length) return word;
+
+    const first = chars[0];
+    const replacement = first === "س" ? "ل" : "س";
+
+    return replacement + chars.slice(1).join("") + " به " + first + "یدی";
+}
+
+function encodeSos(text) {
+    return text.split(/(\\s+)/u).map(part =>
+        /^\\s+$/u.test(part)
+            ? part
+            : part.replace(/[\\p{L}\\p{M}]+/gu, encodeSosWord)
+    ).join("");
+}
+
+/* بازگشایی سوسکی؛ فاصله‌ها و نشانه‌گذاری جمله حفظ می‌شوند. */
+function decodeSos(text) {
+    return text.replace(
+        /(\\S+)\\s+به\\s+([\\p{L}])یدی([^\\p{L}\\p{M}]*)/gu,
+        (match, encodedWord, first, trailing) => {
+            const expectedPrefix = first === "س" ? "ل" : "س";
+            if (!encodedWord.startsWith(expectedPrefix)) return match;
+
+            return first + Array.from(encodedWord).slice(1).join("") + trailing;
+        }
+    );
+}
+
 function encodeSecret(text, id) {
     if (id === "mot") return encodeMot(text);
+    if (id === "sos") return encodeSos(text);
     if (id === "zar") return encodeZargari(text);
 
     const map = secretMaps[id];
@@ -456,6 +489,7 @@ function encodeSecret(text, id) {
 
 function decodeSecret(text, id) {
     if (id === "mot") return decodeMot(text);
+    if (id === "sos") return decodeSos(text);
     if (id === "zar") return decodeZargari(text);
 
     const map = secretMaps[id];
