@@ -456,11 +456,7 @@ function encodeSosWord(word) {
 }
 
 function encodeSos(text) {
-    return text.split(/(\\s+)/u).map(part =>
-        /^\\s+$/u.test(part)
-            ? part
-            : part.replace(/[\\p{L}\\p{M}]+/gu, encodeSosWord)
-    ).join("");
+    return text.replace(/[\\p{L}\\p{M}]+/gu, encodeSosWord);
 }
 
 /* بازگشایی سوسکی؛ فاصله‌ها و نشانه‌گذاری جمله حفظ می‌شوند. */
